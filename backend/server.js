@@ -1,6 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/db');
-const roomRoutes = require('./routes/roomRoutes'); // Import room routes
+const HealthRoutes = require('./routes/HealthRoutes'); // Import room routes
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,11 +13,11 @@ app.use(express.json());
 
 // Basic route for home page
 app.get("/", (req, res) => {
-    res.send("Hii book here your room and enjoy your quality time.Thank you for choosing us.Visit again");
+    res.send("Hellooo");
 });
 
-// Use room routes with prefix '/api'
-app.use('/api', roomRoutes);
+// Use health routes with prefix '/api'
+app.use('/api', HealthRoutes);
 
 // Start the server
 app.listen(PORT, () => {

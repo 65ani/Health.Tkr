@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const roomSchema = new mongoose.Schema(
+const healthDataSchema = new mongoose.Schema(
     {
      date: { 
             type: Date,
@@ -13,5 +13,5 @@ const roomSchema = new mongoose.Schema(
 
         });
 
-const HealthModel = mongoose.model('HealthModel', healthModelSchema);
+const HealthModel = mongoose.model('HealthData', healthDataSchema);
 module.exports = HealthModel;
