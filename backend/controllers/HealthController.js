@@ -41,17 +41,27 @@ exports.getTrackById = async (req, res) => {
 // Update a track by ID
 exports.updateTrack = async (req, res) => {
     try {
-
-        let newTrack = new HealthModel({
-            date: req.body.date,
-            steps: req.body.steps, 
-            caloriesBurned: req.body.caloriesBurned,
+        const updatedTrack = await HealthModel.findByIdAndUpdate(req.params.id, {
+            date:req.body.date,
+            steps:req.body.steps,
+            caloriesBurned:req.body.caloriesBurned,
             distanceCovered:req.body.distanceCovered,
-            weight: req.body.weight
-        });
+            weight:req.body.weight
+        }, { new: true }); // Return the updated Track
 
-        if (!updatedTrack) return res.status(404).send('Track not found in database'); // If Track is not found, return 404
-        res.send(updatedTrack); // Send the updated Track as a response
+        if (!updatedTrack) return res.status(404).send('Track not found in database'); // If track is not found, return 404
+        res.send(updatedTrack); // Send the updated  track as a response
+    } catch (err) {
+        res.status(400).send(err.message); // Send an error response if something goes wrong
+    }
+};
+
+// Delete a track by ID
+exports.deleteTrack = async (req, res) => {
+    try {
+        const TrackById = await HealthModel.findByIdAndDelete(req.params.id); // Find track by ID and delete it
+        if (!TrackById) return res.status(404).send('Tracknot found in database'); // If track is not found, return 404
+        res.send("Track deleted successfully"); // Send success message
     } catch (err) {
         res.status(400).send(err.message); // Send an error response if something goes wrong
     }

@@ -1,20 +1,12 @@
 [
-       {     
+       {     "date":"5.3.2004",
             "steps": "14201",
             "caloriesBurned": "234567",
             "distanceCovered": "250",
             "weight":"77"
-        },
+        }
 
 
-    {
-        "date": "2024-10-01T08:08:48.953Z",
-        "steps": 142023,
-        "caloriesBurned": 2345667,
-        "distanceCovered": 350,
-        "weight":107,
-        "_id": "66fbae100dc1febda6ce8f95",
-        "__v": 0
-      }
+    
   ]
    
