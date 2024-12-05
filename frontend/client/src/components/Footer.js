@@ -15,7 +15,7 @@ const Footer = () => (
     }}
   >
     <Typography variant="h6" gutterBottom>
-      Built with ❤️ by kjdnblSKBn
+      Built with 🖤 by Anitha
     </Typography>
     <Typography variant="body2" sx={{ mt: 2 }}>
       © {new Date().getFullYear()} Bsc Cohort | All Rights Reserved
