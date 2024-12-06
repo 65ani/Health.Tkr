@@ -11,7 +11,7 @@ import Footer from './components/Footer';
 // import ShowBookList from './components/ShowTrackList';
 // import ShowBookDetails from './components/ShowTrackDetails';
 // import UpdateBookInfo from './components/UpdateTrackInfo';
-// import HomePage from './components/HomePage';
+import HomePage from './components/HomePage';
 // import NotesPage from './components/NotesPage'; // Import NotesPage component
 
 const App = () => {
@@ -22,14 +22,14 @@ const App = () => {
         <Box display="flex" flexDirection="column" minHeight="100vh">
           <Navbar />
           <Box component="main" flexGrow={1} py={3}>
-            {/* <Routes>
+            <Routes>
               <Route exact path='/' element={<HomePage />} />
-              <Route path='/track-list' element={<ShowBookList />} />
+              {/* <Route path='/track-list' element={<ShowBookList />} />
               <Route path='/create-track' element={<CreateBook />} />
               <Route path='/edit-track/:id' element={<UpdateBookInfo />} />
               <Route path='/show-track/:id' element={<ShowBookDetails />} />
-              <Route path='/notes/*' element={<NotesPage />} />
-            </Routes> */}
+              <Route path='/notes/*' element={<NotesPage />} /> */}
+            </Routes>
           </Box>
           <Footer />
         </Box>
