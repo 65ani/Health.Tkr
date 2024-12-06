@@ -11,6 +11,16 @@ const HomePage = () => {
       <Typography variant="h5" gutterBottom>
          Monitor your wellness journey and stay on top of your fitness goals.
       </Typography>
+      <Box mt={4}>
+        <Button 
+          component={Link} 
+          to="/track-list" // Updated to link to the ShowTrackList component
+          color="primary" 
+          variant="contained"
+        >
+          View Tracks
+        </Button>
+      </Box>
       </Container>
   );
 };
