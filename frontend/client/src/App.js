@@ -7,10 +7,10 @@ import { CssBaseline, Box } from '@mui/material';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import CreateBook from './components/CreateTrack';
-// import ShowBookList from './components/ShowTrackList';
-// import ShowBookDetails from './components/ShowTrackDetails';
-// import UpdateBookInfo from './components/UpdateTrackInfo';
+import CreateTrack from './components/CreateTrack';
+// import ShowTrackList from './components/ShowTrackList';
+// import ShowTrackDetails from './components/ShowTrackDetails';
+// import UpdateTrackInfo from './components/UpdateTrackInfo';
 import HomePage from './components/HomePage';
 // import NotesPage from './components/NotesPage'; // Import NotesPage component
 
@@ -25,7 +25,7 @@ const App = () => {
             <Routes>
               <Route exact path='/' element={<HomePage />} />
               {/* <Route path='/track-list' element={<ShowBookList />} /> */}
-              <Route path='/create-track' element={<CreateBook />} />
+              <Route path='/create-track' element={<CreateTrack />} />
               {/* <Route path='/edit-track/:id' element={<UpdateBookInfo />} />
               <Route path='/show-track/:id' element={<ShowBookDetails />} />
               <Route path='/notes/*' element={<NotesPage />} /> */}

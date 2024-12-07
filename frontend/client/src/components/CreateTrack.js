@@ -9,33 +9,33 @@ import axios from 'axios';
 const CreateTrack = (props) => {
     const navigate = useNavigate();
     const [track, setTrack] = useState({
-      title: '',
-      isbn: '',
-      author: '',
-      description: '',
-      published_date: '',
-      publisher: '',
+      Name: '',
+      Date: '',
+      Steps: '',
+      Caloriesburned: '',
+      distancecovered: '',
+      weight: '',
     });
     const [showToast, setShowToast] = useState(false);
   
     const onChange = (e) => {
-        setBook({ ...track, [e.target.name]: e.target.value });
+        setTrack({ ...track, [e.target.name]: e.target.value });
       };
     
       const onSubmit = (e) => {
         e.preventDefault();
     
-        // axios
-        //   .post('/api/tracks', track)
-        //   .then((res) => {
-        //     setTrack({
-        //       title: '',
-        //       isbn: '',
-        //       author: '',
-        //       description: '',
-        //       published_date: '',
-        //       publisher: '',
-        //     });
+        axios
+          .post('/api/tracks', track)
+          .then((res) => {
+            setTrack({
+              Name: '',
+              Date: '',
+              Steps: '',
+              Caloriesburned: '',
+              distancecovered: '',
+              weight: '',
+            });
 
           // Show the success alert
           toast.success('Track added successfully!!', {
@@ -50,35 +50,15 @@ const CreateTrack = (props) => {
             transition: Slide,
           });
 
-       // Delay the navigation slightly to allow the toast to be seen
-       setTimeout(() => {
-        setShowToast(false); // Hide the toast
-        navigate('/'); // Navigate to homepage
+        // Delay the navigation slightly to allow the toast to be seen
+        setTimeout(() => {
+          navigate('/'); // Navigate to homepage
       }, 5000); // Adjust the timeout as needed
-
-    })
-
-    .catch((err) => {
-        console.log('Error in CreateBook!');
-        console.log('The error is -> ')
-        console.log(err)
-        // Show the success alert
-        toast.error('Something went wrong, try again!', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Slide,
-        });
-      });
-  };
+  })
+};
 
         return (
-            <div className='CreateBook'>
+            <div className='CreateTrack'>
               <Navbar />
               <ToastContainer
                 position="top-right"
@@ -110,57 +90,21 @@ const CreateTrack = (props) => {
                       <div className='form-group'>
                         <input
                           type='text'
-                          placeholder='Title of the Book'
-                          name='title'
+                          placeholder='Name of the track'
+                          name='Name'
                           className='form-control'
-                          value={book.title}
+                          value={track.name}
                           onChange={onChange}
                         />
                       </div>
                       <br />
                       <div className='form-group'>
                 <input
-                  type='text'
-                  placeholder='ISBN'
-                  name='isbn'
-                  className='form-control'
-                  value={track.isbn}
-                  onChange={onChange}
-                />
-              </div>
-              <br />
-
-              <div className='form-group'>
-                <input
-                  type='text'
-                  placeholder='Author'
-                  name='author'
-                  className='form-control'
-                  value={track.author}
-                  onChange={onChange}
-                />
-              </div>
-              <br />
-
-              <div className='form-group'>
-                <input
-                  type='text'
-                  placeholder='Describe this track'
-                  name='description'
-                  className='form-control'
-                  value={track.description}
-                  onChange={onChange}
-                />
-              </div>
-              <br />
-
-              <div className='form-group'>
-                <input
                   type='date'
-                  placeholder='published_date'
-                  name='published_date'
+                  placeholder='Date'
+                  name='Date'
                   className='form-control'
-                  value={book.published_date}
+                  value={track.date}
                   onChange={onChange}
                 />
               </div>
@@ -168,11 +112,11 @@ const CreateTrack = (props) => {
 
               <div className='form-group'>
                 <input
-                  type='text'
-                  placeholder='Publisher of this Book'
-                  name='publisher'
+                  type='number'
+                  placeholder='Steps'
+                  name='Steps'
                   className='form-control'
-                  value={track.publisher}
+                  value={track.Steps}
                   onChange={onChange}
                 />
               </div>
@@ -180,11 +124,11 @@ const CreateTrack = (props) => {
 
               <div className='form-group'>
                 <input
-                  type='text'
-                  placeholder='ISBN'
-                  name='isbn'
+                  type='number'
+                  placeholder='Caloriesburned'
+                  name='Caloriesburned'
                   className='form-control'
-                  value={track.isbn}
+                  value={track.Caloriesburned}
                   onChange={onChange}
                 />
               </div>
@@ -192,11 +136,11 @@ const CreateTrack = (props) => {
 
               <div className='form-group'>
                 <input
-                  type='text'
-                  placeholder='Author'
-                  name='author'
+                  type='distancecovered'
+                  placeholder='Distancecovered'
+                  name='Distancecovered'
                   className='form-control'
-                  value={track.author}
+                  value={track.distancecovered}
                   onChange={onChange}
                 />
               </div>
@@ -204,35 +148,11 @@ const CreateTrack = (props) => {
 
               <div className='form-group'>
                 <input
-                  type='text'
-                  placeholder='Describe this book'
-                  name='description'
+                  type='number'
+                  placeholder='weight'
+                  name='weight'
                   className='form-control'
-                  value={track.description}
-                  onChange={onChange}
-                />
-              </div>
-              <br />
-
-              <div className='form-group'>
-                <input
-                  type='date'
-                  placeholder='published_date'
-                  name='published_date'
-                  className='form-control'
-                  value={track.published_date}
-                  onChange={onChange}
-                />
-              </div>
-              <br />
-
-              <div className='form-group'>
-                <input
-                  type='text'
-                  placeholder='Publisher of this Book'
-                  name='publisher'
-                  className='form-control'
-                  value={track.publisher}
+                  value={track.weight}
                   onChange={onChange}
                 />
               </div>
