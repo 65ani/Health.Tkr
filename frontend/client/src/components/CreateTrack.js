@@ -76,8 +76,9 @@ const CreateTrack = (props) => {
 });
 };
         return (
+          <Container maxWidth="lg" sx={{ textAlign: 'center', py: 5 }}>
             <div className='CreateTrack'>
-  
+    <div className='container d-flex align-items-center justify-content-center '></div>
               <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -154,11 +155,11 @@ const CreateTrack = (props) => {
 
               <div className='form-group'>
                 <input
-                  type='distancecovered'
+                  type='number'
                   placeholder='Distancecovered'
                   name='Distancecovered'
                   className='form-control'
-                  value={track.distancecovered}
+                  value={track.Distancecovered}
                   onChange={onChange}
                 />
               </div>
@@ -187,6 +188,8 @@ const CreateTrack = (props) => {
 
 
     </div>
+    </Container>
+  
   );
 };
 
