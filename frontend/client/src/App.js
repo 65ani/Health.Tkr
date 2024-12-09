@@ -25,7 +25,7 @@ const App = () => {
             <Routes>
               <Route exact path='/' element={<HomePage />} />
               {/* <Route path='/track-list' element={<ShowBookList />} /> */}
-              <Route path='/create-track' element={<CreateTrack />} />
+              <Route path='/track-list' element={<CreateTrack />} />
               {/* <Route path='/edit-track/:id' element={<UpdateBookInfo />} />
               <Route path='/show-track/:id' element={<ShowBookDetails />} />
               <Route path='/notes/*' element={<NotesPage />} /> */}

@@ -18,7 +18,7 @@ const Footer = () => (
       Built with 🖤 by Anitha
     </Typography>
     <Typography variant="body2" sx={{ mt: 2 }}>
-      © {new Date().getFullYear()} Bsc Cohort | All Rights Reserved
+      © {new Date().getFullYear()} Health Track | All Rights Reserved
     </Typography>
   </Box>
 );

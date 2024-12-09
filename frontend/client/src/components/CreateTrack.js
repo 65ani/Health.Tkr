@@ -55,11 +55,29 @@ const CreateTrack = (props) => {
           navigate('/'); // Navigate to homepage
       }, 5000); // Adjust the timeout as needed
   })
-};
+ 
 
+.catch((err) => {
+  console.log('Error in CreateTrack!');
+  console.log('The error is -> ')
+  console.log(err)
+  // Show the success alert
+  toast.error('Something went wrong, try again!', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+    transition: Slide,
+  });
+});
+};
         return (
             <div className='CreateTrack'>
-              <Navbar />
+  
               <ToastContainer
                 position="top-right"
                 autoClose={5000}
