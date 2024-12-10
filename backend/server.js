@@ -1,25 +1,34 @@
-const express = require('express');
-const connectDB = require('./config/db');
-const HealthRoutes = require('./routes/HealthRoutes'); // Import room routes
+const express = require("express")
+const connectDB = require("./config/db")
+const tracks = require("./routes/HealthRoutes")
+const cors = require("cors")
+const path = require('path');
+require("dotenv").config( { path: "./config.env" } )
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+// CONNECT TO DB
+connectDB()
 
-// Connect to MongoDB
-connectDB();
+// INITIATE APP
+const app = express()
 
-// Middleware to parse JSON requests
+// HANDLE MIDDLEWARE
+app.use(express.json());
+app.use(cors());
+app.use("/tracks", tracks)
+
+
+// SERVE STATIC FILES
 app.use(express.json());
 
 // Basic route for home page
 app.get("/", (req, res) => {
-    res.send("Hellooo");
+    res.send("heyyyy");
 });
 
-// Use health routes with prefix '/api'
+// Use room routes with prefix '/api'
 app.use('/api', HealthRoutes);
 
 // Start the server
-app.listen(PORT, () => {
+app.listen(port, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
