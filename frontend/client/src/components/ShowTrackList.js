@@ -1,4 +1,3 @@
-// src/components/ShowBookList.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -7,14 +6,14 @@ import { Button, Typography, Container, Grid, CircularProgress, Box } from '@mui
 import TrackCard from './TrackCard';
 
 function ShowTrackList() {
-  const [track, setTrack] = useState([]);
+  const [tracks, setTracks] = useState([]); // Renamed 'track' to 'tracks' to avoid naming conflict
   const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
     axios
       .get(`/api/tracks`)
       .then((res) => {
-        setTrack(res.data);
+        setTracks(res.data);
         setLoading(false); // Set loading to false once data is fetched
       })
       .catch((err) => {
@@ -46,16 +45,16 @@ function ShowTrackList() {
         </Box>
       ) : (
         <Grid container spacing={3}>
-          {track.length === 0 ? (
+          {tracks.length === 0 ? (
             <Grid item xs={12}>
               <Typography variant="h6" color="text.secondary">
                 No Tracks found!
               </Typography>
             </Grid>
           ) : (
-            track.map((track, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <TrackCard track={track} />
+            tracks.map((trackItem) => ( // Renamed 'track' to 'trackItem' for clarity
+              <Grid item xs={12} sm={6} md={4} key={trackItem._id}> {/* Assumes trackItem has _id */}
+                <TrackCard track={trackItem} />
               </Grid>
             ))
           )}

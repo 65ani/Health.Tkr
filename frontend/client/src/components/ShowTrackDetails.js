@@ -27,7 +27,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 }));
 
 const ShowTrackDetails = () => {
-  const [track, setTrack] = useState({});
+  const [track, setTrack] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -39,7 +39,8 @@ const ShowTrackDetails = () => {
         setTrack(res.data);
       })
       .catch((err) => {
-        console.log('Error from ShowTrackDetails');
+        console.error('Error fetching track details:', err);
+        setTrack({ error: 'Error fetching track details' });
       });
   }, [id]);
 
@@ -50,11 +51,11 @@ const ShowTrackDetails = () => {
   const handleDeleteConfirm = () => {
     axios
       .delete(`/api/tracks/${id}`)
-      .then((res) => {
+      .then(() => {
         navigate('/track-list');
       })
       .catch((err) => {
-        console.log('Error from ShowTrackDetails_deleteClick');
+        console.error('Error deleting track:', err);
       });
     setOpenDialog(false);
   };
@@ -62,6 +63,8 @@ const ShowTrackDetails = () => {
   const handleDeleteCancel = () => {
     setOpenDialog(false);
   };
+
+  if (!track) return <Typography>Loading...</Typography>;
 
   return (
     <Container maxWidth="md">
@@ -72,33 +75,32 @@ const ShowTrackDetails = () => {
               <CardMedia
                 component="img"
                 height="300"
-                image=""
-                alt={track.title}
+                image={track.imageUrl || "https://defaultimageurl.com"}
+                alt={track.name}
               />
             </Card>
           </Grid>
           <Grid item xs={12} md={8}>
             <Typography variant="h4" component="h1" gutterBottom>
-              {track.date}
+              {track.name}
             </Typography>
             <Typography variant="h6" color="textSecondary" gutterBottom>
-              by {track.steps}
+              by {track.date}
             </Typography>
             <Divider sx={{ my: 2 }} />
-            
-            {/* Display track details one after another */}
+
+            {/* Display track details */}
             <Box display="flex" flexDirection="column">
               <Typography variant="body1" paragraph>
-                {track.description}
+                {track.Steps}
               </Typography>
-              <Typography variant="body1">ISBN: {track.isbn}</Typography>
-              <Typography variant="body1">Published: {track.published_date}</Typography>
-              <Typography variant="body1">Publisher: {track.publisher}</Typography>
+              <Typography variant="body1">Calories burned: {track.Caloriesburned}</Typography>
+              <Typography variant="body1">Distance covered: {track.Distancecovered}</Typography>
+              <Typography variant="body1">Weight: {track.weight}</Typography>
             </Box>
-
           </Grid>
         </Grid>
-        
+
         <Box mt={4} display="flex" justifyContent="space-between">
           <Button
             startIcon={<ArrowBackIcon />}
@@ -131,7 +133,6 @@ const ShowTrackDetails = () => {
         </Box>
       </StyledPaper>
 
-      {/* Keep the dialog unchanged */}
       <Dialog
         open={openDialog}
         onClose={handleDeleteCancel}
