@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, Box } from '@mui/material';
-// import rosePineTheme from './theme/rosepine';
+import sunsetTheme from './theme/sunset';  // Corrected the import to match theme name
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -16,8 +16,8 @@ import HomePage from './components/HomePage';
 
 const App = () => {
   return (
-    // <ThemeProvider theme={rosePineTheme}>
-      // <CssBaseline />
+    <ThemeProvider theme={sunsetTheme}>  {/* Corrected the theme usage */}
+      <CssBaseline />  {/* Un-commented to use global CSS reset */}
       <Router>
         <Box display="flex" flexDirection="column" minHeight="100vh">
           <Navbar />
@@ -34,7 +34,7 @@ const App = () => {
           <Footer />
         </Box>
       </Router>
-    // </ThemeProvider>
+    </ThemeProvider>
   );
 };
 

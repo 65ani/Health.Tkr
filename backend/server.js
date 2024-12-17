@@ -1,34 +1,28 @@
-const express = require("express")
-const connectDB = require("./config/db")
-const tracks = require("./routes/HealthRoutes")
+const express = require('express');
+const connectDB = require('./config/db');
+const HealthRoutes = require('./routes/HealthRoutes'); 
 const cors = require("cors")
+const tracks = require("./routes/HealthRoutes")
 const path = require('path');
 require("dotenv").config( { path: "./config.env" } )
 
 // CONNECT TO DB
 connectDB()
 
-// INITIATE APP
-const app = express()
+const app = express();
 
 // HANDLE MIDDLEWARE
 app.use(express.json());
 app.use(cors());
-app.use("/tracks", tracks)
+app.use("/", HealthRoutes)
 
 
-// SERVE STATIC FILES
-app.use(express.json());
-
-// Basic route for home page
 app.get("/", (req, res) => {
-    res.send("heyyyy");
+    res.send("HomePage");
 });
 
-// Use room routes with prefix '/api'
-app.use('/api', HealthRoutes);
-
+const port = process.env.PORT || 5000;
 // Start the server
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+    console.log(`Server running at http://localhost:${port}`);
 });
