@@ -16,6 +16,15 @@ app.use(express.json());
 app.use(cors());
 app.use("/", HealthRoutes)
 
+app.use(express.static(path.join(__dirname, ".frontend/client/build")));
+app.get("*", function (_, res) {
+    res.sendFile(
+        path.join(__dirname, ".frontend/client/build/index.html"),
+        function (err) {
+            res.status(500).send(err);
+        }
+    );
+});
 
 app.get("/", (req, res) => {
     res.send("HomePage");
