@@ -6,7 +6,7 @@ import { Button, Typography, Container, Grid, CircularProgress, Box } from '@mui
 import TrackCard from './TrackCard';
 
 function ShowTrackList() {
-  const [tracks, setTracks] = useState([]); // Renamed 'track' to 'tracks' to avoid naming conflict
+  const [tracks, setTracks] = useState([]); 
   const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {

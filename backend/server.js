@@ -14,7 +14,7 @@ const app = express();
 // HANDLE MIDDLEWARE
 app.use(express.json());
 app.use(cors());
-app.use("/", HealthRoutes)
+app.use("/api", tracks)
 
 app.use(express.static(path.join(__dirname, ".frontend/client/build")));
 app.get("*", function (_, res) {
@@ -27,7 +27,7 @@ app.get("*", function (_, res) {
 });
 
 app.get("/", (req, res) => {
-    res.send("HomePage");
+    res.send("WELCOME TO HEALTH TRACKER PROJECT");
 });
 
 const port = process.env.PORT || 5000;
