@@ -10,10 +10,10 @@ import axios from 'axios';
 const CreateTrack = (props) => {
     const navigate = useNavigate();
     const [track, setTrack] = useState({
-      Name: '',
-      Date: '',
-      Steps: '',
-      Caloriesburned: '',
+      name: '',
+      date: '',
+      steps: '',
+      caloriesburned: '',
       distancecovered: '',
       weight: '',
     });
@@ -27,13 +27,13 @@ const CreateTrack = (props) => {
         e.preventDefault();
     
         axios
-          .post('/https://65ani-healthtkr-cwo7t3jf0hp.ws-us117.gitpod.io/api/tracks', track)
+          .post('https://65ani-healthtkr-cwo7t3jf0hp.ws-us117.gitpod.io/api/tracks', track)
           .then((res) => {
             setTrack({
-              Name: '',
-              Date: '',
-              Steps: '',
-              Caloriesburned: '',
+              name: '',
+              date: '',
+              steps: '',
+              caloriesburned: '',
               distancecovered: '',
               weight: '',
             });
@@ -98,20 +98,20 @@ const CreateTrack = (props) => {
                 <div className='row'>
                   <div className='col-md-8 m-auto'>
                     <br />
-                    <Link to='/' className='btn btn-outline-warning float-left'>
+                    <Link to='/create-track' className='btn btn-outline-warning float-left'>
                       Show Track List
                     </Link>
                   </div>
                   <div className='col-md-8 m-auto'>
                     <h1 className='display-4 text-center'>Add Track</h1>
-                    <p className='lead text-center'>Create New Track</p>
+                    <p className='lead text-center'>Start tracking your health journey by adding a new track.</p>
         
                     <form noValidate onSubmit={onSubmit}>
                       <div className='form-group'>
                         <input
-                          type='text'
+                          type='String'
                           placeholder='Name of the track'
-                          name='Name'
+                          name='name'
                           className='form-control'
                           value={track.name}
                           onChange={onChange}
@@ -121,8 +121,8 @@ const CreateTrack = (props) => {
                       <div className='form-group'>
                 <input
                   type='date'
-                  placeholder='Date'
-                  name='Date'
+                  placeholder='date'
+                  name='date'
                   className='form-control'
                   value={track.date}
                   onChange={onChange}
@@ -133,10 +133,10 @@ const CreateTrack = (props) => {
               <div className='form-group'>
                 <input
                   type='number'
-                  placeholder='Steps'
-                  name='Steps'
+                  placeholder='steps'
+                  name='steps'
                   className='form-control'
-                  value={track.Steps}
+                  value={track.steps}
                   onChange={onChange}
                 />
               </div>
@@ -145,10 +145,10 @@ const CreateTrack = (props) => {
               <div className='form-group'>
                 <input
                   type='number'
-                  placeholder='Caloriesburned'
-                  name='Caloriesburned'
+                  placeholder='caloriesburned'
+                  name='caloriesburned'
                   className='form-control'
-                  value={track.Caloriesburned}
+                  value={track.caloriesburned}
                   onChange={onChange}
                 />
               </div>
@@ -157,10 +157,10 @@ const CreateTrack = (props) => {
               <div className='form-group'>
                 <input
                   type='number'
-                  placeholder='Distancecovered'
-                  name='Distancecovered'
+                  placeholder='distancecovered'
+                  name='distancecovered'
                   className='form-control'
-                  value={track.Distancecovered}
+                  value={track.distancecovered}
                   onChange={onChange}
                 />
               </div>

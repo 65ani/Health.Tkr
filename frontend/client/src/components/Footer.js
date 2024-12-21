@@ -15,10 +15,10 @@ const Footer = () => (
     }}
   >
     <Typography variant="h6" gutterBottom>
-      Built with 🖤 by Anitha
+    Crafted with care and dedication by 🖤 Anitha
     </Typography>
     <Typography variant="body2" sx={{ mt: 2 }}>
-      © {new Date().getFullYear()} Health Track | All Rights Reserved
+      © {new Date().getFullYear()} Stay Healthy, Stay Strong | All Rights Reserved
     </Typography>
   </Box>
 );

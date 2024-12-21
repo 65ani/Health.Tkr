@@ -11,15 +11,16 @@ function ShowTrackList() {
 
   useEffect(() => {
     axios
-      .get(`/api/tracks`)
-      .then((res) => {
-        setTracks(res.data);
-        setLoading(false); // Set loading to false once data is fetched
-      })
-      .catch((err) => {
-        console.log('Error from ShowTrackList ->', err);
-        setLoading(false); // Set loading to false even on error
-      });
+    .get(`https://5000-65ani-healthtkr-cwo7t3jf0hp.ws-us117.gitpod.io/api/tracks`)
+    .then((res) => {
+      console.log(res.data); // Inspect the response
+      setTracks(res.data);
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.error('Error from ShowTrackList:', err); // Log error details
+      setLoading(false);
+    });  
   }, []);
 
   return (

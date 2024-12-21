@@ -33,9 +33,13 @@ const Navbar = () => {
   return (
     <AppBar position="static" color="transparent" elevation={0} sx={{ width: '100%' }}>
       <Toolbar>
-        <Typography variant="h5" component="div" sx={{ flexGrow: 1, color: 'primary.main' }}>
-          Health Tracker Project
-        </Typography>
+      <Typography 
+      variant="h5" 
+      component="div" 
+      sx={{ flexGrow: 1, color: 'primary.main', fontFamily: 'Roboto, sans-serif', fontWeight: 'bold' }}
+    >
+      Health Tracker Project
+    </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <Button
             color="primary"

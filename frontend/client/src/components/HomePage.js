@@ -6,10 +6,10 @@ const HomePage = () => {
     return (
       <Container maxWidth="lg" sx={{ textAlign: 'center', py: 5 }}>
         <Typography variant="h2" component="h1" color="primary" gutterBottom>
-              WELCOME TO HEALTH TRACKER SYSTEM
+        WELCOME TO YOUR PERSONAL HEALTH TRACKER
               </Typography>
       <Typography variant="h5" gutterBottom>
-         Monitor your wellness journey and stay on top of your fitness goals.
+      Track your health, achieve your goals, and embrace a healthier lifestyle
       </Typography>
       <Box mt={4}>
         <Button 

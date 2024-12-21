@@ -21,11 +21,11 @@ function UpdateBookInfo(props) {
       .then((res) => {
         setTrack({
              
-                Name: res.data.title, // Changed title to Name
-                Date: res.data.published_date, // Changed published_date to Date
-                Steps: res.data.steps, // Assuming steps are available in res.data
-                Caloriesburned: res.data.caloriesburned, // Assuming caloriesburned are available in res.data
-                Distancecovered: res.data.distancecovered, // Assuming distancecovered are available in res.data
+                Name: res.data.name, // Changed title to Name
+                Date: res.data.date, // Changed published_date to Date
+                Steps: res.data.Steps, // Assuming steps are available in res.data
+                Caloriesburned: res.data.Caloriesburned, // Assuming caloriesburned are available in res.data
+                Distancecovered: res.data.Distancecovered, // Assuming distancecovered are available in res.data
                 Weight: res.data.weight, // Assuming weight is available in res.data
               
         });

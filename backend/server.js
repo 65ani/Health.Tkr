@@ -14,7 +14,7 @@ const app = express();
 // HANDLE MIDDLEWARE
 app.use(express.json());
 app.use(cors());
-app.use("/api", tracks)
+app.use("/api/tracks", tracks)
 
 app.use(express.static(path.join(__dirname, ".frontend/client/build")));
 app.get("*", function (_, res) {
