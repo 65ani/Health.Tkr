@@ -1,34 +1,13 @@
 const mongoose = require('mongoose');
 
 const TrackSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  date: {
-    type: Number,
-    required: true
-  },
-  steps: {
-    type: Number,
-    required: true
-  },
-  caloriesburned: {
-    type: Number,
-    required: true
-  },
-  distancecovered: {
-    type: Number,
-    required: true
-  },
-  weight: {
-    type: Number,
-    required: true
-  },
-  updated_date: {
-    type: Date,
-    default: Date.now
-  }
+  name: { type: String, required: true },
+  date: { type: String, required: true },
+  steps: { type: Number, required: true }, // Changed to Number
+  caloriesburned: { type: Number }, // Changed to Number
+  distancecovered: { type: Number }, // Changed to Number
+  weight: { type: Number }, // Changed to Number
+  updated_date: { type: Date, default: Date.now }
 });
 
-module.exports = Track = mongoose.model('track', TrackSchema);
+module.exports = mongoose.model('track', TrackSchema);
