@@ -23,11 +23,73 @@ const CreateTrack = () => {
     setTrack({ ...track, [e.target.name]: e.target.value });
   };
 
+  // const onSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   // Validate required fields
+  //   if (!track.name.trim() || !track.date.trim() || !track.steps) {
+  //     toast.error('Name, Date, and Steps are required!', {
+  //       position: 'top-right',
+  //       autoClose: 3000,
+  //       theme: 'dark',
+  //       transition: Slide,
+  //     });
+  //     return;
+  //   }
+
+  //   try {
+  //     // Log the payload for debugging
+  //     console.log("Payload being sent:", track);
+
+  //     // Send the request to the backend
+  //     const response = await axios.post('/tracks', {
+  //       name: track.name,
+  //       date: track.date,
+  //       steps: parseInt(track.steps, 10),
+  //       caloriesburned: track.caloriesburned ? parseInt(track.caloriesburned, 10) : 0,
+  //       distancecovered: track.distancecovered ? parseFloat(track.distancecovered) : 0,
+  //       weight: track.weight ? parseFloat(track.weight) : 0,
+  //     });
+
+  //     // Reset form and notify success
+  //     setTrack({
+  //       name: '',
+  //       date: '',
+  //       steps: '',
+  //       caloriesburned: '',
+  //       distancecovered: '',
+  //       weight: '',
+  //     });
+
+  //     toast.success('Track added successfully!', {
+  //       position: 'top-right',
+  //       autoClose: 5000,
+  //       theme: 'dark',
+  //       transition: Slide,
+  //     });
+
+  //     setTimeout(() => {
+  //       navigate('/');
+  //     }, 5000);
+  //   } catch (error) {
+  //     console.error('Error in CreateTrack:', error.response?.data || error.message);
+  //     toast.error(
+  //       `Error: ${error.response?.data?.message || 'Something went wrong!'}`,
+  //       {
+  //         position: 'top-right',
+  //         autoClose: 5000,
+  //         theme: 'dark',
+  //         transition: Slide,
+  //       }
+  //     );
+  //   }
+  // };
+
   const onSubmit = async (e) => {
     e.preventDefault();
-
+  
     // Validate required fields
-    if (!track.name.trim() || !track.date.trim() || !track.steps) {
+    if (!track.name.trim() || !track.date || !track.steps) {
       toast.error('Name, Date, and Steps are required!', {
         position: 'top-right',
         autoClose: 3000,
@@ -36,21 +98,14 @@ const CreateTrack = () => {
       });
       return;
     }
-
+  
     try {
       // Log the payload for debugging
       console.log("Payload being sent:", track);
-
+  
       // Send the request to the backend
-      const response = await axios.post('/tracks', {
-        name: track.name,
-        date: track.date,
-        steps: parseInt(track.steps, 10),
-        caloriesburned: track.caloriesburned ? parseInt(track.caloriesburned, 10) : 0,
-        distancecovered: track.distancecovered ? parseFloat(track.distancecovered) : 0,
-        weight: track.weight ? parseFloat(track.weight) : 0,
-      });
-
+      const response = await axios.post('/api/tracks', track);
+  
       // Reset form and notify success
       setTrack({
         name: '',
@@ -60,14 +115,14 @@ const CreateTrack = () => {
         distancecovered: '',
         weight: '',
       });
-
+  
       toast.success('Track added successfully!', {
         position: 'top-right',
         autoClose: 5000,
         theme: 'dark',
         transition: Slide,
       });
-
+  
       setTimeout(() => {
         navigate('/');
       }, 5000);
@@ -84,6 +139,8 @@ const CreateTrack = () => {
       );
     }
   };
+  
+
 
   return (
     <div className="CreateTrack">

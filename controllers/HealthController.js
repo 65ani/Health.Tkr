@@ -1,24 +1,28 @@
-const  HealthModel = require('../models/HealthModel');  // Import health model
+const HealthModel = require('../models/HealthModel');  // Import health model
 
 // Create a new tracks
+// Create a new track
 exports.createTrack = async (req, res) => {
     try {
         let newTrack = new HealthModel({
+            name: req.body.name, // Include the name field
             date: req.body.date,
-            steps: req.body.steps, 
+            steps: req.body.steps,
             caloriesBurned: req.body.caloriesBurned,
-            distanceCovered:req.body.distanceCovered,
-            weight: req.body.weight
+            distanceCovered: req.body.distanceCovered,
+            weight: req.body.weight,
         });
-        newTrack = await newTrack.save(); // Save the new tracks to the database
-        res.send(newTrack); // Send the saved room as a response
+
+        newTrack = await newTrack.save(); // Save the new track to the database
+        res.send(newTrack); // Send the saved track as a response
     } catch (err) {
         res.status(400).send(err.message); // Send an error response if something goes wrong
     }
 };
 
+
 // Get all tracks
-exports.getAllTrack= async (req, res) => {
+exports.getAllTrack = async (req, res) => {
     try {
         const allTrack = await HealthModel.find(); // Get all tracks from the database
         res.send(allTrack); // Send all tracks as a response
@@ -42,11 +46,11 @@ exports.getTrackById = async (req, res) => {
 exports.updateTrack = async (req, res) => {
     try {
         const updatedTrack = await HealthModel.findByIdAndUpdate(req.params.id, {
-            date:req.body.date,
-            steps:req.body.steps,
-            caloriesBurned:req.body.caloriesBurned,
-            distanceCovered:req.body.distanceCovered,
-            weight:req.body.weight
+            date: req.body.date,
+            steps: req.body.steps,
+            caloriesBurned: req.body.caloriesBurned,
+            distanceCovered: req.body.distanceCovered,
+            weight: req.body.weight
         }, { new: true }); // Return the updated Track
 
         if (!updatedTrack) return res.status(404).send('Track not found in database'); // If track is not found, return 404
