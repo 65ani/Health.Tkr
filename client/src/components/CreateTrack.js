@@ -5,6 +5,7 @@ import { Slide, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
+// Set base URL for Axios
 axios.defaults.baseURL = "https://health-tkr.onrender.com/api";
 
 const CreateTrack = () => {
@@ -22,51 +23,52 @@ const CreateTrack = () => {
     setTrack({ ...track, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
+    // Validate required fields
     if (!track.name.trim()) {
-      toast.error('Name field is required!', {
-        position: "top-right",
+      toast.error('Name is required!', {
+        position: 'top-right',
         autoClose: 3000,
-        theme: "dark",
+        theme: 'dark',
         transition: Slide,
       });
       return;
     }
 
-    axios
-      .post('/tracks', track)
-      .then(() => {
-        setTrack({
-          name: '',
-          date: '',
-          steps: '',
-          caloriesburned: '',
-          distancecovered: '',
-          weight: '',
-        });
+    try {
+      const response = await axios.post('/tracks', track);
 
-        toast.success('Track added successfully!', {
-          position: "top-right",
-          autoClose: 5000,
-          theme: "dark",
-          transition: Slide,
-        });
-
-        setTimeout(() => {
-          navigate('/');
-        }, 5000);
-      })
-      .catch((err) => {
-        console.error('Error in CreateTrack:', err.response?.data || err.message);
-        toast.error('Failed to create track. Please try again.', {
-          position: "top-right",
-          autoClose: 5000,
-          theme: "dark",
-          transition: Slide,
-        });
+      // Reset form and notify success
+      setTrack({
+        name: '',
+        date: '',
+        steps: '',
+        caloriesburned: '',
+        distancecovered: '',
+        weight: '',
       });
+
+      toast.success('Track added successfully!', {
+        position: 'top-right',
+        autoClose: 5000,
+        theme: 'dark',
+        transition: Slide,
+      });
+
+      setTimeout(() => {
+        navigate('/');
+      }, 5000); // Adjust delay for toast visibility
+    } catch (error) {
+      console.error('Error in CreateTrack:', error.response?.data || error.message);
+      toast.error(`Error: ${error.response?.data || 'Something went wrong!'}`, {
+        position: 'top-right',
+        autoClose: 5000,
+        theme: 'dark',
+        transition: Slide,
+      });
+    }
   };
 
   return (
@@ -91,6 +93,7 @@ const CreateTrack = () => {
                   className="form-control"
                   value={track.name}
                   onChange={onChange}
+                  required
                 />
               </div>
               <br />
