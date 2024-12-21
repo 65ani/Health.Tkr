@@ -27,8 +27,8 @@ const CreateTrack = () => {
     e.preventDefault();
 
     // Validate required fields
-    if (!track.name.trim()) {
-      toast.error('Name is required!', {
+    if (!track.name.trim() || !track.date.trim() || !track.steps) {
+      toast.error('Name, Date, and Steps are required!', {
         position: 'top-right',
         autoClose: 3000,
         theme: 'dark',
@@ -38,7 +38,18 @@ const CreateTrack = () => {
     }
 
     try {
-      const response = await axios.post('/tracks', track);
+      // Log the payload for debugging
+      console.log("Payload being sent:", track);
+
+      // Send the request to the backend
+      const response = await axios.post('/tracks', {
+        name: track.name,
+        date: track.date,
+        steps: parseInt(track.steps, 10),
+        caloriesburned: track.caloriesburned ? parseInt(track.caloriesburned, 10) : 0,
+        distancecovered: track.distancecovered ? parseFloat(track.distancecovered) : 0,
+        weight: track.weight ? parseFloat(track.weight) : 0,
+      });
 
       // Reset form and notify success
       setTrack({
@@ -59,15 +70,18 @@ const CreateTrack = () => {
 
       setTimeout(() => {
         navigate('/');
-      }, 5000); // Adjust delay for toast visibility
+      }, 5000);
     } catch (error) {
       console.error('Error in CreateTrack:', error.response?.data || error.message);
-      toast.error(`Error: ${error.response?.data || 'Something went wrong!'}`, {
-        position: 'top-right',
-        autoClose: 5000,
-        theme: 'dark',
-        transition: Slide,
-      });
+      toast.error(
+        `Error: ${error.response?.data?.message || 'Something went wrong!'}`,
+        {
+          position: 'top-right',
+          autoClose: 5000,
+          theme: 'dark',
+          transition: Slide,
+        }
+      );
     }
   };
 
@@ -104,6 +118,7 @@ const CreateTrack = () => {
                   className="form-control"
                   value={track.date}
                   onChange={onChange}
+                  required
                 />
               </div>
               <br />
@@ -115,6 +130,7 @@ const CreateTrack = () => {
                   className="form-control"
                   value={track.steps}
                   onChange={onChange}
+                  required
                 />
               </div>
               <br />
@@ -132,7 +148,7 @@ const CreateTrack = () => {
               <div className="form-group">
                 <input
                   type="number"
-                  placeholder="Distance Covered"
+                  placeholder="Distance Covered (km)"
                   name="distancecovered"
                   className="form-control"
                   value={track.distancecovered}
@@ -143,7 +159,7 @@ const CreateTrack = () => {
               <div className="form-group">
                 <input
                   type="number"
-                  placeholder="Weight"
+                  placeholder="Weight (kg)"
                   name="weight"
                   className="form-control"
                   value={track.weight}
