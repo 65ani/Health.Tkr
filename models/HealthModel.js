@@ -6,21 +6,24 @@ const TrackSchema = new mongoose.Schema({
     required: true
   },
   date: {
-    type: String,
+    type: Number,
     required: true
   },
   steps: {
-    type: String,
+    type: Number,
     required: true
   },
   caloriesburned: {
-    type: String
+    type: Number,
+    required: true
   },
   distancecovered: {
-    type: Date
+    type: Number,
+    required: true
   },
   weight: {
-    type: String
+    type: Number,
+    required: true
   },
   updated_date: {
     type: Date,
