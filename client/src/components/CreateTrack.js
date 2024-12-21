@@ -104,7 +104,7 @@ const CreateTrack = () => {
       console.log("Payload being sent:", track);
   
       // Send the request to the backend
-      const response = await axios.post('/api/tracks', track);
+      const response = await axios.post('/tracks', track);
   
       // Reset form and notify success
       setTrack({
