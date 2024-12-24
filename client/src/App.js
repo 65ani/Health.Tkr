@@ -12,7 +12,7 @@ import ShowTrackList from './components/ShowTrackList';
 import ShowTrackDetails from './components/ShowTrackDetails';
 import UpdateTrack from './components/UpdateTrack';
 import HomePage from './components/HomePage';
-// import NotesPage from './components/NotesPage'; // Import NotesPage component
+import NotesPage from './components/NotesPage'; // Import NotesPage component
 
 const App = () => {
   return (
@@ -28,7 +28,7 @@ const App = () => {
               <Route path='/create-track' element={<CreateTrack />} />
               <Route path='/show-track/:id' element={<ShowTrackDetails />} />
               <Route path='/edit-track/:id' element={<UpdateTrack />} />
-              {/* <Route path='/notes/*' element={<NotesPage />} /> */}
+              <Route path='/notes/*' element={<NotesPage />} />
             </Routes>
           </Box>
           <Footer />

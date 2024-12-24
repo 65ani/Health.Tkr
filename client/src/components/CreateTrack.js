@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Container } from '@mui/material';
 import axios from 'axios';
 
 // Set base URL for Axios
@@ -143,6 +144,7 @@ const CreateTrack = () => {
 
 
   return (
+    <Container maxWidth="lg" sx={{ textAlign: 'center', py: 5 }}>
     <div className="CreateTrack">
       <ToastContainer />
       <div className="container">
@@ -232,6 +234,7 @@ const CreateTrack = () => {
         </div>
       </div>
     </div>
+    </Container>
   );
 };
 

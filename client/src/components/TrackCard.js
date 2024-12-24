@@ -19,7 +19,7 @@ const TrackCard = ({ track }) => {
       }}
     >
       <img
-        src=''
+        src='https://images.unsplash.com/photo-1495446815901-a7297e633e8d'
         alt='Tracks'
         style={{ height: 200, objectFit: 'cover', width: '100%' }}
       />
