@@ -43,7 +43,7 @@ const Navbar = () => {
       }}
     >
       <Toolbar>
-        <Typography
+        {/* <Typography
           variant="h5"
           component={RouterLink}
           to="/"
@@ -61,7 +61,31 @@ const Navbar = () => {
           }}
         >
           Health Tracker
-        </Typography>
+        </Typography> */}
+       <Box
+  component={RouterLink}
+  to="/"
+  sx={{
+    display: 'flex',
+    alignItems: 'center',
+    flexGrow: 1,
+    textDecoration: 'none',
+    '& img': {
+      height: '50px', // Adjust the height as needed
+      width: 'auto', // Maintains the aspect ratio
+      transition: '0.3s ease', // Smooth transition for hover effects
+    },
+    '&:hover img': {
+      transform: 'scale(1.1)', // Slight zoom on hover
+    },
+  }}
+>
+  <img 
+    src="https://cdn-icons-png.flaticon.com/512/535/535285.png" 
+    alt="Health Tracker Logo" 
+  />
+</Box>
+
 
         {/* Styled Home Icon */}
         <IconButton

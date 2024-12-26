@@ -91,7 +91,7 @@ const CreateTrack = () => {
   
     // Validate required fields
     if (!track.name.trim() || !track.date || !track.steps) {
-      toast.error('Name, Date, and Steps are required!', {
+      toast.error('name, date, and steps are required!', {
         position: 'top-right',
         autoClose: 3000,
         theme: 'dark',

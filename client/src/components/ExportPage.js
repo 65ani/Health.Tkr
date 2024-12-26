@@ -37,15 +37,14 @@ const ExportPage = () => {
     doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 14, 25);
 
     // Create table data
-    const tableColumn = ["name", "date", "steps", "caloriesburned", "distancecovered" ,"weight"];
+    const tableColumn = ["name", "steps", "caloriesburned", "distancecovered" ,"weight"];
     const tableRows = tracks.map(track => [
       track.name,
-      track.date,
       track.steps,
       track.caloriesburned,
       track.distancecovered,
       track.weight,
-      new Date(track.date).toLocaleDateString()
+      // new Date(track.date).toLocaleDateString()
     ]);
 
     doc.autoTable({
@@ -63,12 +62,11 @@ const ExportPage = () => {
   const exportToExcel = () => {
     const worksheet = XLSX.utils.json_to_sheet(tracks.map(book => ({
       Name: tracks.name,
-      date: tracks.date,
       steps: tracks.steps,
       caloriesburned: tracks.caloriesburned,
       distancecovered: tracks.distancecovered,
       weight: tracks.weight,
-      'Published Date': new Date(tracks.date).toLocaleDateString(),
+      // 'Published Date': new Date(tracks.date).toLocaleDateString(),
     })));
 
     const worktrack = XLSX.utils.track_new();
@@ -81,12 +79,11 @@ const ExportPage = () => {
   const exportToCSV = () => {
     const worksheet = XLSX.utils.json_to_sheet(books.map(book => ({
         name: tracks.name,
-        date: tracks.date,
         steps: tracks.steps,
         caloriesburned: tracks.caloriesburned,
         distancecovered: tracks.distancecovered,
         weight: tracks.weight,
-        'Published Date': new Date(tracks.date).toLocaleDateString(),
+        // 'Published Date': new Date(tracks.date).toLocaleDateString(),
         
     })));
 
@@ -100,14 +97,13 @@ const ExportPage = () => {
     content += `Generated on: ${new Date().toLocaleDateString()}\n\n`;
     
     tracks.forEach((track, index) => {
-      content += `${index + 1}. BOOK DETAILS\n`;
+      content += `${index + 1}. TRACK DETAILS\n`;
       content += `name: ${track.name}\n`;
-      content += `date: ${track.date}\n`;
-      content += `steps: ${track.Steps}\n`;
-      content += `caloriesburned: ${track.caloriesburned}\n`;
+      content += `steps: ${track.steps}\n`;
+      content += `caloriesBurned: ${track.caloriesBurned}\n`;
+      content += `distanceCovered: ${track.distanceCovered}\n`;
+    //  content += `Published Date: ${new Date(book.published_date).toLocaleDateString()}\n`;
       content += `weight: ${track.weight}\n`;
-      content += `Published Date: ${new Date(track.date).toLocaleDateString()}\n`;
-      content += `distancecovered: ${track.distancecovered || 'N/A'}\n`;
       content += '\n----------------------------\n\n';
     });
 
@@ -123,15 +119,23 @@ const ExportPage = () => {
     );
   }
 
+//   import React from 'react';
+// import { Container, Paper, Typography, Box, Button } from '@mui/material';
+// import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+// import TableViewIcon from '@mui/icons-material/TableView';
+// import DownloadIcon from '@mui/icons-material/Download';
+// import DescriptionIcon from '@mui/icons-material/Description';
+
+// const ExportPage = ({ tracks, exportToPDF, exportToCSV, exportToExcel, exportToText }) => {
   return (
     <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
       <Paper sx={{ p: 4 }}>
         <Typography variant="h4" gutterBottom align="center" color="primary">
-          Export Tracks
+          Manage Exports
         </Typography>
         
         <Typography variant="body1" sx={{ mb: 4 }} align="center" color="text.secondary">
-          Export your track collection in different formats
+          Choose a format to export your track collection seamlessly
         </Typography>
 
         <Box sx={{ 
@@ -145,9 +149,9 @@ const ExportPage = () => {
             size="large"
             startIcon={<PictureAsPdfIcon />}
             onClick={exportToPDF}
-            sx={{ p: 2 }}
+            sx={{ p: 2, backgroundColor: '#d32f2f' }}
           >
-            Export as PDF
+            Export PDF
           </Button>
 
           <Button
@@ -155,9 +159,9 @@ const ExportPage = () => {
             size="large"
             startIcon={<TableViewIcon />}
             onClick={exportToCSV}
-            sx={{ p: 2 }}
+            sx={{ p: 2, backgroundColor: '#1976d2' }}
           >
-            Export as CSV
+            Export CSV
           </Button>
 
           <Button
@@ -165,9 +169,9 @@ const ExportPage = () => {
             size="large"
             startIcon={<DownloadIcon />}
             onClick={exportToExcel}
-            sx={{ p: 2 }}
+            sx={{ p: 2, backgroundColor: '#388e3c' }}
           >
-            Export as Excel
+            Export Excel
           </Button>
 
           <Button
@@ -175,14 +179,14 @@ const ExportPage = () => {
             size="large"
             startIcon={<DescriptionIcon />}
             onClick={exportToText}
-            sx={{ p: 2 }}
+            sx={{ p: 2, backgroundColor: '#f57c00' }}
           >
-            Export as Text
+            Export Text
           </Button>
         </Box>
 
         <Typography variant="body2" sx={{ mt: 4 }} align="center" color="text.secondary">
-          Total Tracks: {tracks.length}
+          Total Tracks Available for Export: {tracks.length}
         </Typography>
       </Paper>
     </Container>
