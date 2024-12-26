@@ -259,8 +259,9 @@
 // };
 
 // export default HomePage;
+// 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import {
   Container,
   Typography,
@@ -292,19 +293,20 @@ const HomePage = () => {
     recentTrack: null,
   });
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // Hook to navigate programmatically
 
   useEffect(() => {
     axios
       .get('/api/tracks')
       .then((res) => {
-        const tracks = res.data;
-        const uniqueAuthors = new Set(tracks.map((track) => track.author)).size;
-        const recentTrack = tracks.sort((a, b) =>
+        const track = res.data;
+        const uniqueAuthors = new Set(track.map((track) => track.author)).size;
+        const recentTrack = track.sort((a, b) =>
           new Date(b.published_date) - new Date(a.published_date)
         )[0];
 
         setStats({
-          totalTracks: tracks.length,
+          totalTracks: track.length,
           uniqueAuthors,
           recentTrack,
         });
@@ -316,6 +318,7 @@ const HomePage = () => {
       });
   }, []);
 
+
   if (loading) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center" minHeight="60vh">
@@ -326,28 +329,44 @@ const HomePage = () => {
 
   return (
     <Container maxWidth="lg" sx={{ py: 6 }}>
-      {/* Hero Section */}
-      <Paper elevation={3} sx={{ p: 4, mb: 6, textAlign: 'center', borderRadius: '16px' }}>
-        <Typography variant="h3" color="primary" gutterBottom>
-          Welcome to Your Personal Health Tracker
-        </Typography>
-        <Typography variant="h6" color="text.secondary" sx={{ mb: 4 }}>
-          Empower yourself to track, analyze, and optimize your health journey.
-        </Typography>
-        <Button
-          component={Link}
-          to="/create-track"
-          variant="contained"
-          size="large"
-          startIcon={<AddIcon />}
-          sx={{ px: 4 }}
-        >
-          Get Started
-        </Button>
-      </Paper>
+      <Grid container spacing={4} alignItems="center">
+        {/* Text Section */}
+        <Grid item xs={12} md={6}>
+          <Typography variant="h2" sx={{ fontWeight: 'bold', mb: 2 }}>
+            WELCOME TO YOUR HEALTH TRACKER SYSTEM
+          </Typography>
+          <Typography variant="body1" sx={{ mb: 4, color: 'text.secondary' }}>
+            Discover personalized insights and manage your health journey with ease.
+          </Typography>
+        </Grid>
+
+        {/* Illustration Section */}
+        <Grid item xs={12} md={6}>
+          <Paper elevation={3} sx={{ p: 4, textAlign: 'center', borderRadius: '16px' }}>
+            <img
+              src="https://via.placeholder.com/600x400.png?text=Health+Tracker+Illustration"
+              alt="Health Tracking Illustration"
+              style={{ maxWidth: '100%', borderRadius: '16px', marginBottom: '16px' }}
+            />
+            <Typography variant="h6" color="text.secondary" sx={{ mb: 4 }}>
+              Empower yourself to track, analyze, and optimize your health journey.
+            </Typography>
+            <Button
+              component={Link}
+              to="/create-track"
+              variant="contained"
+              size="large"
+              startIcon={<AddIcon />}
+              sx={{ px: 4 }}
+            >
+              Create Track
+            </Button>
+          </Paper>
+        </Grid>
+      </Grid>
 
       {/* Stats Section */}
-      <Grid container spacing={4} sx={{ mb: 6 }}>
+      <Grid container spacing={4} sx={{ my: 6 }}>
         <Grid item xs={12} sm={6} md={4}>
           <Card sx={{ textAlign: 'center', p: 4 }}>
             <Avatar sx={{ bgcolor: 'primary.main', mb: 2, width: 56, height: 56 }}>
@@ -366,7 +385,7 @@ const HomePage = () => {
             </Avatar>
             <Typography variant="h4">{stats.uniqueAuthors}</Typography>
             <Typography variant="body1" color="text.secondary">
-              Unique Authors
+              Unique tracks
             </Typography>
           </Card>
         </Grid>
@@ -386,7 +405,12 @@ const HomePage = () => {
       </Grid>
 
       {/* Features Section */}
-      <Typography variant="h5" color="primary" gutterBottom sx={{ textAlign: 'center', mb: 4 }}>
+      <Typography
+        variant="h5"
+        color="primary"
+        gutterBottom
+        sx={{ textAlign: 'center', mb: 4 }}
+      >
         Explore Features
       </Typography>
       <Grid container spacing={4}>

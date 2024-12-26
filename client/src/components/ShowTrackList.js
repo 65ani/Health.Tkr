@@ -6,7 +6,7 @@ import { Button, Typography, Container, Grid, CircularProgress, Box } from '@mui
 import TrackCard from './TrackCard';
 
 function ShowTrackList() {
-  const [tracks, setTracks] = useState([]); 
+  const [track, setTrack] = useState([]); 
   const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
@@ -14,7 +14,7 @@ function ShowTrackList() {
     .get(`https://5000-65ani-healthtkr-cwo7t3jf0hp.ws-us117.gitpod.io/api/tracks`)
     .then((res) => {
       console.log(res.data); // Inspect the response
-      setTracks(res.data);
+      setTrack(res.data);
       setLoading(false);
     })
     .catch((err) => {
@@ -46,14 +46,14 @@ function ShowTrackList() {
         </Box>
       ) : (
         <Grid container spacing={3}>
-          {tracks.length === 0 ? (
+          {track.length === 0 ? (
             <Grid item xs={12}>
               <Typography variant="h6" color="text.secondary">
                 No Tracks found!
               </Typography>
             </Grid>
           ) : (
-            tracks.map((trackItem) => ( // Renamed 'track' to 'trackItem' for clarity
+            track.map((trackItem) => ( // Renamed 'track' to 'trackItem' for clarity
               <Grid item xs={12} sm={6} md={4} key={trackItem._id}> {/* Assumes trackItem has _id */}
                 <TrackCard track={trackItem} />
               </Grid>

@@ -19,8 +19,8 @@ import TrackCard from './TrackCard'; // Updated import
 import axios from 'axios';
 
 const SearchTrack = () => {
-  const [tracks, setTracks] = useState([]);
-  const [filteredTracks, setFilteredTracks] = useState([]);
+  const [track, setTrack] = useState([]);
+  const [filteredTrack, setFilteredTrack] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
     searchTerm: '',
@@ -33,8 +33,8 @@ const SearchTrack = () => {
     axios
       .get('https://health-tkr.onrender.com/api') // Replace with the actual API endpoint
       .then((res) => {
-        setTracks(res.data);
-        setFilteredTracks(res.data);
+        setTrack(res.data);
+        setFilteredTrack(res.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -124,9 +124,10 @@ const SearchTrack = () => {
                   onChange={(e) => setFilters({ ...filters, searchField: e.target.value })}
                 >
                   <MenuItem value="Track_name">Track Name</MenuItem>
-                  <MenuItem value="artist">Artist</MenuItem>
-                  <MenuItem value="genre">Genre</MenuItem>
-                  <MenuItem value="release_date">Release Date</MenuItem>
+                  <MenuItem value="steps">steps</MenuItem>
+                  <MenuItem value="caloriesburned">caloriesburned</MenuItem>
+                  <MenuItem value="distancecovered">distancecovered</MenuItem>
+                  <MenuItem value="weight">weight</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -141,9 +142,10 @@ const SearchTrack = () => {
                   onChange={(e) => setFilters({ ...filters, sortBy: e.target.value })}
                 >
                   <MenuItem value="Track_name">Track Name</MenuItem>
-                  <MenuItem value="artist">Artist</MenuItem>
-                  <MenuItem value="genre">Genre</MenuItem>
-                  <MenuItem value="release_date">Release Date</MenuItem>
+                  <MenuItem value="steps">steps</MenuItem>
+                  <MenuItem value="caloriesburned">caloriesburned</MenuItem>
+                  <MenuItem value="distancecovered">distancecovered</MenuItem>
+                  <MenuItem value="weight">weight</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -181,11 +183,11 @@ const SearchTrack = () => {
 
       {/* Results Section */}
       <Typography variant="body2" color="textSecondary" sx={{ mt: 3 }}>
-        Found {filteredTracks.length} tracks
+        Found {filteredTrack.length} tracks
       </Typography>
 
       <Grid container spacing={3} sx={{ mt: 3 }}>
-        {filteredTracks.map((track) => (
+        {filteredTrack.map((track) => (
           <Grid item xs={12} sm={6} md={4} key={track._id}>
             <TrackCard track={track} />
           </Grid>

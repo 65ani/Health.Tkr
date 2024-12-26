@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function UpdateBookInfo(props) {
+function UpdateTrackInfo(props) {
   const [track, setTrack] = useState({
-      Name: '',
-      Date: '',
-      Steps: '',
-      Caloriesburned: '',
+      name: '',
+      date: '',
+      steps: '',
+      caloriesburned: '',
       distancecovered: '',
       weight: '',
   });
@@ -23,10 +23,10 @@ function UpdateBookInfo(props) {
              
                 Name: res.data.name, // Changed title to Name
                 Date: res.data.date, // Changed published_date to Date
-                Steps: res.data.Steps, // Assuming steps are available in res.data
-                Caloriesburned: res.data.Caloriesburned, // Assuming caloriesburned are available in res.data
-                Distancecovered: res.data.Distancecovered, // Assuming distancecovered are available in res.data
-                Weight: res.data.weight, // Assuming weight is available in res.data
+                steps: res.data.steps, // Assuming steps are available in res.data
+                caloriesburned: res.data.caloriesburned, // Assuming caloriesburned are available in res.data
+                distancecovered: res.data.distancecovered, // Assuming distancecovered are available in res.data
+                weight: res.data.weight, // Assuming weight is available in res.data
               
         });
       })
@@ -44,12 +44,12 @@ function UpdateBookInfo(props) {
     e.preventDefault();
 
     const data = {
-      Name: track.name,
-      Date: track.date,
-      Steps: track.Steps,
-      Caloriesburned: track.Caloriesburned,
-      Distancecovered: track.Distancecovered,
-      Weight: track.weight,
+      name: track.name,
+      date: track.date,
+      steps: track.steps,
+      caloriesburned: track.caloriesburned,
+      distancecovered: track.distancecovered,
+      weight: track.weight,
     };
 
     axios
@@ -96,7 +96,7 @@ function UpdateBookInfo(props) {
                 <input
                   type='date'
                   placeholder='Date'
-                  name='Date'
+                  name='date'
                   className='form-control'
                   value={track.date}
                   onChange={onChange}
@@ -107,10 +107,10 @@ function UpdateBookInfo(props) {
               <div className='form-group'>
                 <input
                   type='number'
-                  placeholder='Steps'
-                  name='Steps'
+                  placeholder='steps'
+                  name='steps'
                   className='form-control'
-                  value={track.Steps}
+                  value={track.steps}
                   onChange={onChange}
                 />
               </div>
@@ -119,10 +119,10 @@ function UpdateBookInfo(props) {
               <div className='form-group'>
                 <input
                   type='number'
-                  placeholder='Caloriesburned'
-                  name='Caloriesburned'
+                  placeholder='caloriesburned'
+                  name='caloriesburned'
                   className='form-control'
-                  value={track.Caloriesburned}
+                  value={track.caloriesburned}
                   onChange={onChange}
                 />
               </div>
@@ -131,10 +131,10 @@ function UpdateBookInfo(props) {
               <div className='form-group'>
                 <input
                   type='number'
-                  placeholder='Distancecovered'
-                  name='Distancecovered'
+                  placeholder='distancecovered'
+                  name='distancecovered'
                   className='form-control'
-                  value={track.Distancecovered}
+                  value={track.distancecovered}
                   onChange={onChange}
                 />
               </div>
@@ -167,4 +167,4 @@ function UpdateBookInfo(props) {
   );
 }
 
-export default UpdateBookInfo;
+export default UpdateTrackInfo;

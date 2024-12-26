@@ -92,11 +92,11 @@ const ShowTrackDetails = () => {
             {/* Display track details */}
             <Box display="flex" flexDirection="column">
               <Typography variant="body1" paragraph>
-                {track.Steps}
+                {track.steps}
               </Typography>
-              <Typography variant="body1">Calories burned: {track.Caloriesburned}</Typography>
-              <Typography variant="body1">Distance covered: {track.Distancecovered}</Typography>
-              <Typography variant="body1">Weight: {track.weight}</Typography>
+              <Typography variant="body1">calories burned: {track.caloriesburned}</Typography>
+              <Typography variant="body1">distance covered: {track.distancecovered}</Typography>
+              <Typography variant="body1">weight: {track.weight}</Typography>
             </Box>
           </Grid>
         </Grid>

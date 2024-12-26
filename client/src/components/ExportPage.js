@@ -1,4 +1,3 @@
-// src/components/ExportPage.js
 import React, { useState, useEffect } from 'react';
 import { Container, Paper, Typography, Button, Box, CircularProgress } from '@mui/material';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
@@ -12,13 +11,13 @@ import 'jspdf-autotable';
 import * as XLSX from 'xlsx';
 
 const ExportPage = () => {
-  const [tracks, setTrack] = useState([]);
+  const [track, setTrack] = useState([]); // Changed from tracks to track
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios.get('/api/tracks')
       .then(res => {
-        setTracks(res.data);
+        setTrack(res.data); // Changed from setTracks to setTrack
         setLoading(false);
       })
       .catch(err => {
@@ -37,8 +36,8 @@ const ExportPage = () => {
     doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 14, 25);
 
     // Create table data
-    const tableColumn = ["name", "steps", "caloriesburned", "distancecovered" ,"weight"];
-    const tableRows = tracks.map(track => [
+    const tableColumn = ["name", "steps", "caloriesburned", "distancecovered", "weight"];
+    const tableRows = track.map(t => [ // Changed from tracks to track
       track.name,
       track.steps,
       track.caloriesburned,
@@ -60,13 +59,13 @@ const ExportPage = () => {
   };
 
   const exportToExcel = () => {
-    const worksheet = XLSX.utils.json_to_sheet(tracks.map(book => ({
-      Name: tracks.name,
-      steps: tracks.steps,
-      caloriesburned: tracks.caloriesburned,
-      distancecovered: tracks.distancecovered,
-      weight: tracks.weight,
-      // 'Published Date': new Date(tracks.date).toLocaleDateString(),
+    const worksheet = XLSX.utils.json_to_sheet(track.map(t => ({ // Changed from tracks to track
+      name: track.name, // Corrected to use the correct object property
+      steps: track.steps,
+      caloriesburned: track.caloriesburned,
+      distancecovered: track.distancecovered,
+      weight: track.weight,
+      // 'Published Date': new Date(t.date).toLocaleDateString(),
     })));
 
     const worktrack = XLSX.utils.track_new();
@@ -77,14 +76,13 @@ const ExportPage = () => {
   };
 
   const exportToCSV = () => {
-    const worksheet = XLSX.utils.json_to_sheet(books.map(book => ({
-        name: tracks.name,
-        steps: tracks.steps,
-        caloriesburned: tracks.caloriesburned,
-        distancecovered: tracks.distancecovered,
-        weight: tracks.weight,
-        // 'Published Date': new Date(tracks.date).toLocaleDateString(),
-        
+    const worksheet = XLSX.utils.json_to_sheet(track.map(t => ({ // Changed from tracks to track
+      name: track.name, // Corrected to use the correct object property
+      steps: track.steps,
+      caloriesburned: track.caloriesburned,
+      distancecovered: track.distancecovered,
+      weight: track.weight,
+        // 'Published Date': new Date(t.date).toLocaleDateString(),
     })));
 
     const csv = XLSX.utils.sheet_to_csv(worksheet);
@@ -96,14 +94,13 @@ const ExportPage = () => {
     let content = 'TRACKS LIST\n\n';
     content += `Generated on: ${new Date().toLocaleDateString()}\n\n`;
     
-    tracks.forEach((track, index) => {
+    track.forEach((t, index) => { // Changed from tracks to track
       content += `${index + 1}. TRACK DETAILS\n`;
-      content += `name: ${track.name}\n`;
-      content += `steps: ${track.steps}\n`;
-      content += `caloriesBurned: ${track.caloriesBurned}\n`;
-      content += `distanceCovered: ${track.distanceCovered}\n`;
-    //  content += `Published Date: ${new Date(book.published_date).toLocaleDateString()}\n`;
-      content += `weight: ${track.weight}\n`;
+      content += `name: ${t.name}\n`; // Changed from track.name to t.name
+      content += `steps: ${t.steps}\n`;
+      content += `caloriesBurned: ${t.caloriesburned}\n`;
+      content += `distanceCovered: ${t.distancecovered}\n`;
+      content += `weight: ${t.weight}\n`; // Changed from track.weight to t.weight
       content += '\n----------------------------\n\n';
     });
 
@@ -119,14 +116,6 @@ const ExportPage = () => {
     );
   }
 
-//   import React from 'react';
-// import { Container, Paper, Typography, Box, Button } from '@mui/material';
-// import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-// import TableViewIcon from '@mui/icons-material/TableView';
-// import DownloadIcon from '@mui/icons-material/Download';
-// import DescriptionIcon from '@mui/icons-material/Description';
-
-// const ExportPage = ({ tracks, exportToPDF, exportToCSV, exportToExcel, exportToText }) => {
   return (
     <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
       <Paper sx={{ p: 4 }}>
@@ -186,7 +175,7 @@ const ExportPage = () => {
         </Box>
 
         <Typography variant="body2" sx={{ mt: 4 }} align="center" color="text.secondary">
-          Total Tracks Available for Export: {tracks.length}
+          Total Tracks Available for Export: {track.length} {/* Changed from tracks.length */}
         </Typography>
       </Paper>
     </Container>
