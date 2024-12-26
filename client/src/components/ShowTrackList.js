@@ -45,6 +45,7 @@ function ShowTrackList() {
           <CircularProgress />
         </Box>
       ) : (
+        <Box>
         <Grid container spacing={3}>
           {track.length === 0 ? (
             <Grid item xs={12}>
@@ -53,13 +54,14 @@ function ShowTrackList() {
               </Typography>
             </Grid>
           ) : (
-            track.map((trackItem) => ( // Renamed 'track' to 'trackItem' for clarity
+            track.map((trackItem) => ( 
               <Grid item xs={12} sm={6} md={4} key={trackItem._id}> {/* Assumes trackItem has _id */}
                 <TrackCard track={trackItem} />
               </Grid>
             ))
           )}
         </Grid>
+        </Box>
       )}
     </Container>
   );

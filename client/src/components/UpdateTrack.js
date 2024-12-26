@@ -21,12 +21,13 @@ function UpdateTrackInfo(props) {
       .then((res) => {
         setTrack({
              
-                Name: res.data.name, // Changed title to Name
-                Date: res.data.date, // Changed published_date to Date
-                steps: res.data.steps, // Assuming steps are available in res.data
+                Name: res.data.name, 
+                Date: res.data.date, 
+                steps: res.data.steps, 
                 caloriesburned: res.data.caloriesburned, // Assuming caloriesburned are available in res.data
                 distancecovered: res.data.distancecovered, // Assuming distancecovered are available in res.data
-                weight: res.data.weight, // Assuming weight is available in res.data
+                weight: res.data.weight, 
+                
               
         });
       })

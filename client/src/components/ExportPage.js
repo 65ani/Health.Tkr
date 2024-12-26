@@ -68,10 +68,12 @@ const ExportPage = () => {
       // 'Published Date': new Date(t.date).toLocaleDateString(),
     })));
 
-    const worktrack = XLSX.utils.track_new();
-    XLSX.utils.track_append_sheet(worktrack, worksheet, "tracks");
-    const excelBuffer = XLSX.write(worktrack, { trackType: 'xlsx', type: 'array' });
-    const data = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Patients');
+    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const data = new Blob([excelBuffer], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    });
     saveAs(data, 'tracks-list.xlsx');
   };
 
@@ -94,13 +96,13 @@ const ExportPage = () => {
     let content = 'TRACKS LIST\n\n';
     content += `Generated on: ${new Date().toLocaleDateString()}\n\n`;
     
-    track.forEach((t, index) => { // Changed from tracks to track
+    track.forEach((track, index) => { // Changed from tracks to track
       content += `${index + 1}. TRACK DETAILS\n`;
-      content += `name: ${t.name}\n`; // Changed from track.name to t.name
-      content += `steps: ${t.steps}\n`;
-      content += `caloriesBurned: ${t.caloriesburned}\n`;
-      content += `distanceCovered: ${t.distancecovered}\n`;
-      content += `weight: ${t.weight}\n`; // Changed from track.weight to t.weight
+      content += `name: ${track.name}\n`; // Changed from track.name to t.name
+      content += `steps: ${track.steps}\n`;
+      content += `caloriesBurned: ${track.caloriesburned}\n`;
+      content += `distanceCovered: ${track.distancecovered}\n`;
+      content += `weight: ${track.weight}\n`; // Changed from track.weight to t.weight
       content += '\n----------------------------\n\n';
     });
 
@@ -175,7 +177,7 @@ const ExportPage = () => {
         </Box>
 
         <Typography variant="body2" sx={{ mt: 4 }} align="center" color="text.secondary">
-          Total Tracks Available for Export: {track.length} {/* Changed from tracks.length */}
+          Total Tracks Available for Export: {track.length}
         </Typography>
       </Paper>
     </Container>

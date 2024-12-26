@@ -46,6 +46,7 @@ exports.getTrackById = async (req, res) => {
 exports.updateTrack = async (req, res) => {
     try {
         const updatedTrack = await HealthModel.findByIdAndUpdate(req.params.id, {
+            name: req.body.name,
             date: req.body.date,
             steps: req.body.steps,
             caloriesBurned: req.body.caloriesBurned,

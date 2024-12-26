@@ -62,28 +62,29 @@ const Navbar = () => {
         >
           Health Tracker
         </Typography> */}
-       <Box
-  component={RouterLink}
-  to="/"
+      <Box
+  component="div"
   sx={{
     display: 'flex',
     alignItems: 'center',
-    flexGrow: 1,
     textDecoration: 'none',
-    '& img': {
-      height: '50px', // Adjust the height as needed
-      width: 'auto', // Maintains the aspect ratio
-      transition: '0.3s ease', // Smooth transition for hover effects
-    },
-    '&:hover img': {
-      transform: 'scale(1.1)', // Slight zoom on hover
-    },
   }}
 >
+  {/* Logo Image */}
   <img 
-    src="https://cdn-icons-png.flaticon.com/512/535/535285.png" 
+    src="health-tracker-high-resolution-logo.png" 
     alt="Health Tracker Logo" 
+    style={{
+      height: '50px',  // Adjust the height as needed
+      width: 'auto',   // Maintain aspect ratio
+      marginRight: '10px'  // Space between logo and text
+    }} 
   />
+  
+  {/* Health Tracker Text */}
+  <Typography variant="h5" component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+    HEALTH TRACKER
+  </Typography>
 </Box>
 
 
