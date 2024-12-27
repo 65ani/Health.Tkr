@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Slide, ToastContainer, toast } from 'react-toastify';
+import {  Grid, Typography, TextField, Button, Box, Paper ,InputLabel} from '@mui/material';
 import 'react-toastify/dist/ReactToastify.css';
 import { Container } from '@mui/material';
 import axios from 'axios';
@@ -140,100 +141,240 @@ const CreateTrack = () => {
       );
     }
   };
-  
-
 
   return (
-    <Container maxWidth="lg" sx={{ textAlign: 'center', py: 5 }}>
-    <div className="CreateTrack">
+    <Container maxWidth="sm" sx={{ textAlign: 'center', py: 5 }}>
       <ToastContainer />
-      <div className="container">
-        <div className="row">
-          <div className="col-md-8 m-auto">
-            <Link to="/" className="btn btn-outline-warning float-left">
-              Show Track List
-            </Link>
-          </div>
-          <div className="col-md-8 m-auto">
-            <h1 className="display-4 text-center">Add Track</h1>
-            <p className="lead text-center">Track your health journey</p>
-            <form noValidate onSubmit={onSubmit}>
-              <div className="form-group">
-                <input
-                  type="text"
-                  placeholder="Name of the track"
-                  name="name"
-                  className="form-control"
-                  value={track.name}
-                  onChange={onChange}
-                  required
-                />
-              </div>
-              <br />
-              <div className="form-group">
-                <input
-                  type="date"
-                  name="date"
-                  className="form-control"
-                  value={track.date}
-                  onChange={onChange}
-                  required
-                />
-              </div>
-              <br />
-              <div className="form-group">
-                <input
-                  type="number"
-                  placeholder="Steps"
-                  name="steps"
-                  className="form-control"
-                  value={track.steps}
-                  onChange={onChange}
-                  required
-                />
-              </div>
-              <br />
-              <div className="form-group">
-                <input
-                  type="number"
-                  placeholder="Calories Burned"
-                  name="caloriesburned"
-                  className="form-control"
-                  value={track.caloriesburned}
-                  onChange={onChange}
-                />
-              </div>
-              <br />
-              <div className="form-group">
-                <input
-                  type="number"
-                  placeholder="Distance Covered (km)"
-                  name="distancecovered"
-                  className="form-control"
-                  value={track.distancecovered}
-                  onChange={onChange}
-                />
-              </div>
-              <br />
-              <div className="form-group">
-                <input
-                  type="number"
-                  placeholder="Weight (kg)"
-                  name="weight"
-                  className="form-control"
-                  value={track.weight}
-                  onChange={onChange}
-                />
-              </div>
-              <br />
-              <button type="submit" className="btn btn-outline-warning btn-block mt-4">
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+      <Box sx={{ mb: 4 }}>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <Button variant="outlined" color="warning" sx={{ mb: 4 }}>
+            Show Track List
+          </Button>
+        </Link>
+      </Box>
+
+      <Paper sx={{ p: 4, borderRadius: 2, boxShadow: 3 }}>
+        <Typography variant="h4" sx={{ mb: 2 }}>
+          Add Track
+        </Typography>
+        <Typography variant="h6" color="textSecondary" sx={{ mb: 4 }}>
+          Track your health journey
+        </Typography>
+
+        <Box component="form" onSubmit={onSubmit}>
+          <Grid container spacing={3}>
+            {/* Name of the Track */}
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Name of the Track"
+                name="name"
+                value={track.name}
+                onChange={onChange}
+                required
+                variant="outlined"
+                sx={{
+                  backgroundColor: 'white',
+                  '& .MuiInputLabel-root': {
+                    color: 'black', // Black label color
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'pink', // Pink border color
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'pink', // Pink border on hover
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: 'pink', // Pink border when focused
+                    },
+                  },
+                  '& .MuiInputBase-input': {
+                    color: 'black', // Black text color
+                  },
+                }}
+              />
+            </Grid>
+
+            {/* Date */}
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Date"
+                type="date"
+                name="date"
+                value={track.date}
+                onChange={onChange}
+                required
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                variant="outlined"
+                sx={{
+                  backgroundColor: 'white',
+                  '& .MuiInputLabel-root': {
+                    color: 'black',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'pink',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'pink',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: 'pink',
+                    },
+                  },
+                  '& .MuiInputBase-input': {
+                    color: 'black',
+                  },
+                }}
+              />
+            </Grid>
+
+            {/* Steps */}
+            <Grid item xs={12} sm={6}>
+              <TextField
+                fullWidth
+                label="Steps"
+                type="number"
+                name="steps"
+                value={track.steps}
+                onChange={onChange}
+                required
+                variant="outlined"
+                sx={{
+                  backgroundColor: 'white',
+                  '& .MuiInputLabel-root': {
+                    color: 'black',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'pink',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'pink',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: 'pink',
+                    },
+                  },
+                  '& .MuiInputBase-input': {
+                    color: 'black',
+                  },
+                }}
+              />
+            </Grid>
+
+            {/* Calories Burned */}
+            <Grid item xs={12} sm={6}>
+              <TextField
+                fullWidth
+                label="Calories Burned"
+                type="number"
+                name="caloriesburned"
+                value={track.caloriesburned}
+                onChange={onChange}
+                variant="outlined"
+                sx={{
+                  backgroundColor: 'white',
+                  '& .MuiInputLabel-root': {
+                    color: 'black',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'pink',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'pink',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: 'pink',
+                    },
+                  },
+                  '& .MuiInputBase-input': {
+                    color: 'black',
+                  },
+                }}
+              />
+            </Grid>
+
+            {/* Distance Covered */}
+            <Grid item xs={12} sm={6}>
+              <TextField
+                fullWidth
+                label="Distance Covered (km)"
+                type="number"
+                name="distancecovered"
+                value={track.distancecovered}
+                onChange={onChange}
+                variant="outlined"
+                sx={{
+                  backgroundColor: 'white',
+                  '& .MuiInputLabel-root': {
+                    color: 'black',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'pink',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'pink',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: 'pink',
+                    },
+                  },
+                  '& .MuiInputBase-input': {
+                    color: 'black',
+                  },
+                }}
+              />
+            </Grid>
+
+            {/* Weight */}
+            <Grid item xs={12} sm={6}>
+              <TextField
+                fullWidth
+                label="Weight (kg)"
+                type="number"
+                name="weight"
+                value={track.weight}
+                onChange={onChange}
+                variant="outlined"
+                sx={{
+                  backgroundColor: 'white',
+                  '& .MuiInputLabel-root': {
+                    color: 'black',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: 'pink',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'pink',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: 'pink',
+                    },
+                  },
+                  '& .MuiInputBase-input': {
+                    color: 'black',
+                  },
+                }}
+              />
+            </Grid>
+          </Grid>
+
+          {/* Submit Button */}
+          <Box sx={{ mt: 4 }}>
+            <Button type="submit" variant="contained" color="warning" fullWidth>
+              Submit
+            </Button>
+          </Box>
+        </Box>
+      </Paper>
     </Container>
   );
 };

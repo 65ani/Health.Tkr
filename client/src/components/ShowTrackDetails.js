@@ -34,7 +34,7 @@ const ShowTrackDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`/api/tracks/${id}`)
+      .get(`https://health-tkr.onrender.com/api/tracks/${id}`)
       .then((res) => {
         setTrack(res.data);
       })
@@ -50,7 +50,7 @@ const ShowTrackDetails = () => {
 
   const handleDeleteConfirm = () => {
     axios
-      .delete(`/api/tracks/${id}`)
+      .delete(`https://health-tkr.onrender.com/api/tracks/${id}`)
       .then(() => {
         navigate('/track-list');
       })

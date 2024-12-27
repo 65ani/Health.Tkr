@@ -297,7 +297,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios
-      .get('/api/tracks')
+      .get('https://health-tkr.onrender.com/api/tracks')
       .then((res) => {
         const track = res.data;
         const uniqueAuthors = new Set(track.map((track) => track.author)).size;
@@ -340,29 +340,39 @@ const HomePage = () => {
           </Typography>
         </Grid>
 
-        {/* Illustration Section */}
-        <Grid item xs={12} md={6}>
-          <Paper elevation={3} sx={{ p: 4, textAlign: 'center', borderRadius: '16px' }}>
-            <img
-              src="https://via.placeholder.com/600x400.png?text=Health+Tracker+Illustration"
-              alt="Health Tracking Illustration"
-              style={{ maxWidth: '100%', borderRadius: '16px', marginBottom: '16px' }}
-            />
-            <Typography variant="h6" color="text.secondary" sx={{ mb: 4 }}>
-              Empower yourself to track, analyze, and optimize your health journey.
-            </Typography>
-            <Button
-              component={Link}
-              to="/create-track"
-              variant="contained"
-              size="large"
-              startIcon={<AddIcon />}
-              sx={{ px: 4 }}
-            >
-              Create Track
-            </Button>
-          </Paper>
-        </Grid>
+       {/* Interactive Feature Section */}
+       <Grid item xs={12} md={6}>
+  <Paper
+    elevation={3}
+    sx={{
+      p: 3,
+      textAlign: 'center',
+      borderRadius: '12px',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      maxWidth: 400,
+      margin: '0 auto',
+    }}
+  >
+    <AddIcon sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
+    <Typography variant="h6" color="text.primary" sx={{ mb: 2 }}>
+      Create a New Track
+    </Typography>
+    <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+      Start your journey by creating a personalized health track.
+    </Typography>
+    <Button
+      component={Link}
+      to="/create-track"
+      variant="contained"
+      size="medium"
+      sx={{ px: 3, py: 1 }}
+    >
+      Create Track
+    </Button>
+  </Paper>
+</Grid>
       </Grid>
 
       {/* Stats Section */}

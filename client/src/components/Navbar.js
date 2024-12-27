@@ -43,7 +43,7 @@ const Navbar = () => {
       }}
     >
       <Toolbar>
-        {/* <Typography
+        <Typography
           variant="h5"
           component={RouterLink}
           to="/"
@@ -61,7 +61,7 @@ const Navbar = () => {
           }}
         >
           Health Tracker
-        </Typography> */}
+        </Typography>
       <Box
   component="div"
   sx={{
@@ -70,24 +70,7 @@ const Navbar = () => {
     textDecoration: 'none',
   }}
 >
-  {/* Logo Image */}
-  <img 
-    src="health-tracker-high-resolution-logo.png" 
-    alt="Health Tracker Logo" 
-    style={{
-      height: '50px',  // Adjust the height as needed
-      width: 'auto',   // Maintain aspect ratio
-      marginRight: '10px'  // Space between logo and text
-    }} 
-  />
-  
-  {/* Health Tracker Text */}
-  <Typography variant="h5" component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-    HEALTH TRACKER
-  </Typography>
 </Box>
-
-
         {/* Styled Home Icon */}
         <IconButton
           color="primary"

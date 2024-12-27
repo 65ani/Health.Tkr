@@ -31,7 +31,7 @@ const SearchTrack = () => {
 
   useEffect(() => {
     axios
-      .get('https://health-tkr.onrender.com/api') // Replace with the actual API endpoint
+      .get('https://health-tkr.onrender.com/api/tracks') // Replace with the actual API endpoint
       .then((res) => {
         setTrack(res.data);
         setFilteredTrack(res.data);
@@ -44,7 +44,7 @@ const SearchTrack = () => {
   }, []);
 
   const applyFilters = () => {
-    let result = [...tracks];
+    let result = [...track];
 
     // Search filter
     if (filters.searchTerm) {
@@ -64,7 +64,7 @@ const SearchTrack = () => {
       return 0;
     });
 
-    setFilteredTracks(result);
+    setFilteredTrack(result);
   };
 
   useEffect(() => {

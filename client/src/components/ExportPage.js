@@ -11,11 +11,11 @@ import 'jspdf-autotable';
 import * as XLSX from 'xlsx';
 
 const ExportPage = () => {
-  const [track, setTrack] = useState([]); // Changed from tracks to track
+  const [track, setTrack] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('/api/tracks')
+    axios.get('https://health-tkr.onrender.com/api/tracks')
       .then(res => {
         setTrack(res.data); // Changed from setTracks to setTrack
         setLoading(false);
@@ -37,7 +37,7 @@ const ExportPage = () => {
 
     // Create table data
     const tableColumn = ["name", "steps", "caloriesburned", "distancecovered", "weight"];
-    const tableRows = track.map(t => [ // Changed from tracks to track
+    const tableRows = track.map(t => [
       track.name,
       track.steps,
       track.caloriesburned,
@@ -78,7 +78,7 @@ const ExportPage = () => {
   };
 
   const exportToCSV = () => {
-    const worksheet = XLSX.utils.json_to_sheet(track.map(t => ({ // Changed from tracks to track
+    const worksheet = XLSX.utils.json_to_sheet(track.map(track => ({ // Changed from tracks to track
       name: track.name, // Corrected to use the correct object property
       steps: track.steps,
       caloriesburned: track.caloriesburned,
@@ -173,7 +173,7 @@ const ExportPage = () => {
             sx={{ p: 2, backgroundColor: '#f57c00' }}
           >
             Export Text
-          </Button>
+          </Button> 
         </Box>
 
         <Typography variant="body2" sx={{ mt: 4 }} align="center" color="text.secondary">
