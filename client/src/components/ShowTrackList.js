@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Button, Typography, Container, Grid, CircularProgress, Box } from '@mui/material';
+import { Button, Typography, Container, CircularProgress, Box } from '@mui/material';
+import { Grid } from '@mui/material';
 
 import TrackCard from './TrackCard';
 
@@ -54,9 +55,9 @@ function ShowTrackList() {
               </Typography>
             </Grid>
           ) : (
-            track.map((trackItem) => ( 
-              <Grid item xs={12} sm={6} md={4} key={trackItem._id}> {/* Assumes trackItem has _id */}
-                <TrackCard track={trackItem} />
+            track.map((track, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <TrackCard track={track} />
               </Grid>
             ))
           )}

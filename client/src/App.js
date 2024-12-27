@@ -14,6 +14,7 @@ import UpdateTrack from './components/UpdateTrack';
 import HomePage from './components/HomePage';
 import ExportPage from './components/ExportPage';
 import NotesPage from './components/NotesPage'; 
+import QRCodePage from './components/QRCodePage'; 
 import SearchTrack from './components/SearchTrack';
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
               <Route path='/edit-track/:id' element={<UpdateTrack />} />
               <Route path="/export" element={<ExportPage />} />
               <Route path="/search" element={<SearchTrack />} />
+              <Route path="/qr-codes" element={<QRCodePage />} />
               <Route path='/notes/*' element={<NotesPage />} />
             </Routes>
           </Box>
