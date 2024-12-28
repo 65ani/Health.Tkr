@@ -25,20 +25,89 @@ function ShowTrackList() {
   }, []);
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Typography variant="h3" component="h1" color="primary" gutterBottom>
-        Track List
-      </Typography>
-
-      <Button
-        component={Link}
-        to="/create-track"
-        color="primary"
-        variant="contained"
-        sx={{ mb: 4 }}
+    <Container
+      maxWidth="lg"
+      sx={{
+        py: 6,
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+        background: 'linear-gradient(to right, #d3c0eb, #a2c2e0)', // Subtle blue gradient
+        borderRadius: 8,
+        boxShadow: 4,
+      }}
+    >
+      {/* Card-like Box for Title and Button */}
+      <Box
+        sx={{
+          width: '100%',
+          maxWidth: 700,
+          padding: 4,
+          borderRadius: 6,
+          backgroundColor: '#ffffff',
+          boxShadow: 6,
+          textAlign: 'center',
+          zIndex: 1,
+          position: 'relative',
+          mb: 4, // Adds margin below the title box
+        }}
       >
-        Add New Track
-      </Button>
+        <Typography
+          variant="h3"
+          component="h1"
+          color="primary"
+          sx={{
+            fontWeight: 700,
+            letterSpacing: 1.5,
+            fontSize: { xs: '2.5rem', md: '3.5rem' },
+            mb: 2,
+          }}
+        >
+          Track List
+        </Typography>
+        <Typography
+          variant="h6"
+          color="textSecondary"
+          sx={{
+            fontSize: 18,
+            fontStyle: 'italic',
+            marginBottom: 4,
+            fontWeight: '300',
+          }}
+        >
+          View, manage, and add new tracks
+        </Typography>
+
+        {/* Floating Add Button */}
+        <Button
+          component={Link}
+          to="/create-track"
+          variant="contained"
+          color="secondary"
+          sx={{
+            position: 'absolute',
+            bottom: -40,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            padding: '15px 35px',
+            fontSize: '1.2rem',
+            fontWeight: 600,
+            borderRadius: '50px',
+            boxShadow: '0px 6px 20px rgba(0, 0, 0, 0.3)',
+            '&:hover': {
+              backgroundColor: '#ff4081', // Coral hover effect
+              boxShadow: '0px 10px 25px rgba(0, 0, 0, 0.4)',
+              transform: 'translateX(-50%) scale(1.1)',
+            },
+            transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+          }}
+        >
+          Add New Track
+        </Button>
+      </Box>
+
+
 
       {loading ? (
         // Show a loading spinner while data is being fetched

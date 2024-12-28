@@ -66,103 +66,117 @@ const ShowTrackDetails = () => {
   if (!track) return <Typography>Loading...</Typography>;
 
   return (
-    <Container maxWidth="md">
-      <StyledCard>
-        <Grid container spacing={4}>
-          {/* Track Name and Date Section at the Top */}
-          <Grid item xs={12}>
-            <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 600 }}>
-              Track Name: <span style={{ color: 'teal' }}>{track.name}</span>
-            </Typography>
+    <Container maxWidth="lg" sx={{ padding: 4 }}>
+  <StyledCard>
+    <Grid
+      container
+      spacing={4}
+      sx={{
+        padding: 3, // Adds padding inside the grid
+      }}
+    >
+      {/* Track Name and Date Section */}
+      <Grid item xs={12}>
+        <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 600 }}>
+          Track Name: <span style={{ color: 'teal' }}>{track.name}</span>
+        </Typography>
+        <Typography variant="h6" color="textSecondary" gutterBottom sx={{ fontSize: 18 }}>
+          Date: <span style={{ color: '#FF4081' }}>{track.date}</span>
+        </Typography>
+        <Divider sx={{ my: 2 }} />
+      </Grid>
 
-            <Typography variant="h6" color="textSecondary" gutterBottom sx={{ fontSize: 18 }}>
-              Date: <span style={{ color: '#FF4081' }}>{track.date}</span>
-            </Typography>
-            <Divider sx={{ my: 2 }} />
-          </Grid>
-
-          {/* Image Section Below Name and Date */}
-          <Grid item xs={12} md={4}>
-            <StyledCard>
-              <CardMedia
-                component="img"
-                height="300"
-                image={track.imageUrl || "https://tinyurl.com/333nvrhj"}
-                alt={track.name}
-                sx={{
-                  objectFit: 'cover',
-                  borderRadius: 8,
-                }}
-              />
-            </StyledCard>
-          </Grid>
-
-          {/* Track Details Section */}
-          <Grid item xs={12} md={8}>
-            <Box display="flex" flexDirection="column" sx={{ gap: 2 }}>
-              <Typography variant="h6" sx={{ color: "pink", fontWeight: 'bold' }}>
-                Track Details:
-              </Typography>
-              <Typography variant="body1">
-                <strong>Steps :</strong> {track.steps}
-              </Typography>
-              <Typography variant="body1">
-                <strong>Calories Burned (kcal) :</strong> {track.caloriesburned} 
-              </Typography>
-              <Typography variant="body1">
-                <strong>Distance Covered (km) :</strong> {track.distancecovered}
-              </Typography>
-              <Typography variant="body1">
-                <strong>Current Weight (kg) :</strong> {track.weight}
-              </Typography>
-            </Box>
-          </Grid>
-        </Grid>
-
-        {/* Action Buttons at the Bottom */}
-        <Box mt={4} display="flex" justifyContent="flex-end" gap={2} sx={{ paddingBottom: 3 }}>
-          <Button
-            startIcon={<ArrowBackIcon />}
-            component={RouterLink}
-            to="/track-list"
-            variant="outlined"
+      {/* Image Section */}
+      <Grid
+        item
+        xs={12}
+        md={4}
+        sx={{
+          paddingLeft: 2, // Space to the left of the image
+        }}
+      >
+        <StyledCard
+          sx={{
+            borderRadius: 5,
+          }}
+        >
+          <CardMedia
+            component="img"
+            height="300"
+            image={track.imageUrl || 'https://tinyurl.com/kep692zx'}
+            alt={track.name}
             sx={{
-              borderRadius: 20,
-              color: 'teal',
-              borderColor: 'teal',
-              '&:hover': { backgroundColor: 'teal', color: 'white' }
+              objectFit: 'cover',
+              borderRadius: 5,
             }}
-          >
-            Back to Track List
-          </Button>
+          />
+        </StyledCard>
+      </Grid>
 
-          <Box>
-            <Button
-              startIcon={<EditIcon />}
-              component={RouterLink}
-              to={`/edit-track/${track._id}`}
-              variant="contained"
-              color="primary"
-              sx={{
-                mr: 1,
-                borderRadius: 20,
-                '&:hover': { backgroundColor: '#2c6e95' }
-              }}
-            >
-              Edit Track
-            </Button>
+      {/* Track Details Section */}
+      <Grid item xs={12} md={8}>
+        <Box display="flex" flexDirection="column" sx={{ gap: 2 }}>
+          <Typography variant="h6" sx={{ color: 'pink', fontWeight: 'bold' }}>
+            Track Details:
+          </Typography>
+          <Typography variant="body1">
+            <strong>Steps :</strong> {track.steps}
+          </Typography>
+          <Typography variant="body1">
+            <strong>Calories Burned (kcal) :</strong> {track.caloriesburned}
+          </Typography>
+          <Typography variant="body1">
+            <strong>Distance Covered (km) :</strong> {track.distancecovered}
+          </Typography>
+          <Typography variant="body1">
+            <strong>Current Weight (kg) :</strong> {track.weight}
+          </Typography>
+        </Box>
+      </Grid>
+    </Grid>
 
-            <Button
-              startIcon={<DeleteIcon />}
-              onClick={onDeleteClick}
-              variant="contained"
-              color="error"
-              sx={{
-                borderRadius: 20,
-                '&:hover': { backgroundColor: '#d32f2f' }
-              }}
-            >
-              Delete Track
+    {/* Action Buttons */}
+    <Box mt={4} display="flex" justifyContent="flex-end" gap={2} sx={{ paddingBottom: 3 }}>
+      <Button
+        startIcon={<ArrowBackIcon />}
+        component={RouterLink}
+        to="/track-list"
+        variant="outlined"
+        sx={{
+          borderRadius: 20,
+          color: 'teal',
+          borderColor: 'teal',
+          '&:hover': { backgroundColor: 'teal', color: 'white' },
+        }}
+      >
+        Back to Track List
+      </Button>
+      <Box>
+        <Button
+          startIcon={<EditIcon />}
+          component={RouterLink}
+          to={`/edit-track/${track._id}`}
+          variant="contained"
+          color="primary"
+          sx={{
+            mr: 1,
+            borderRadius: 20,
+            '&:hover': { backgroundColor: '#2c6e95' },
+          }}
+        >
+          Edit Track
+        </Button>
+        <Button
+          startIcon={<DeleteIcon />}
+          onClick={onDeleteClick}
+          variant="contained"
+          color="error"
+          sx={{
+            borderRadius: 20,
+            '&:hover': { backgroundColor: '#d32f2f' },
+          }}
+        >
+         Delete Track
             </Button>
           </Box>
         </Box>
@@ -185,7 +199,8 @@ const ShowTrackDetails = () => {
           </Button>
         </DialogActions>
       </Dialog>
-    </Container>
+</Container>
+
   );
 };
 
