@@ -12,7 +12,7 @@ function ShowTrackList() {
 
   useEffect(() => {
     axios
-    .get(`https://5000-65ani-healthtkr-cwo7t3jf0hp.ws-us117.gitpod.io/api/tracks`)
+    .get(`https://health-tkr.onrender.com/api/tracks`)
     .then((res) => {
       console.log(res.data); // Inspect the response
       setTrack(res.data);

@@ -18,12 +18,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 
-const StyledPaper = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(4),
-  marginTop: theme.spacing(4),
-  marginBottom: theme.spacing(4),
-  backgroundColor: theme.palette.background.paper,
-  boxShadow: theme.shadows[3],
+const StyledCard = styled(Card)(({ theme }) => ({
+  boxShadow: theme.shadows[5],
+  borderRadius: 8,
+  overflow: 'hidden',
+  backgroundColor: theme.palette.background.default,
 }));
 
 const ShowTrackDetails = () => {
@@ -68,48 +67,75 @@ const ShowTrackDetails = () => {
 
   return (
     <Container maxWidth="md">
-      <StyledPaper>
+      <StyledCard>
         <Grid container spacing={4}>
+          {/* Track Name and Date Section at the Top */}
+          <Grid item xs={12}>
+            <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 600 }}>
+              Track Name: <span style={{ color: 'teal' }}>{track.name}</span>
+            </Typography>
+
+            <Typography variant="h6" color="textSecondary" gutterBottom sx={{ fontSize: 18 }}>
+              Date: <span style={{ color: '#FF4081' }}>{track.date}</span>
+            </Typography>
+            <Divider sx={{ my: 2 }} />
+          </Grid>
+
+          {/* Image Section Below Name and Date */}
           <Grid item xs={12} md={4}>
-            <Card>
+            <StyledCard>
               <CardMedia
                 component="img"
                 height="300"
-                image={track.imageUrl || "https://defaultimageurl.com"}
+                image={track.imageUrl || "https://tinyurl.com/333nvrhj"}
                 alt={track.name}
+                sx={{
+                  objectFit: 'cover',
+                  borderRadius: 8,
+                }}
               />
-            </Card>
+            </StyledCard>
           </Grid>
-          <Grid item xs={12} md={8}>
-            <Typography variant="h4" component="h1" gutterBottom>
-              {track.name}
-            </Typography>
-            <Typography variant="h6" color="textSecondary" gutterBottom>
-              by {track.date}
-            </Typography>
-            <Divider sx={{ my: 2 }} />
 
-            {/* Display track details */}
-            <Box display="flex" flexDirection="column">
-              <Typography variant="body1" paragraph>
-                {track.steps}
+          {/* Track Details Section */}
+          <Grid item xs={12} md={8}>
+            <Box display="flex" flexDirection="column" sx={{ gap: 2 }}>
+              <Typography variant="h6" sx={{ color: "pink", fontWeight: 'bold' }}>
+                Track Details:
               </Typography>
-              <Typography variant="body1">calories burned: {track.caloriesburned}</Typography>
-              <Typography variant="body1">distance covered: {track.distancecovered}</Typography>
-              <Typography variant="body1">weight: {track.weight}</Typography>
+              <Typography variant="body1">
+                <strong>Steps :</strong> {track.steps}
+              </Typography>
+              <Typography variant="body1">
+                <strong>Calories Burned (kcal) :</strong> {track.caloriesburned} 
+              </Typography>
+              <Typography variant="body1">
+                <strong>Distance Covered (km) :</strong> {track.distancecovered}
+              </Typography>
+              <Typography variant="body1">
+                <strong>Current Weight (kg) :</strong> {track.weight}
+              </Typography>
             </Box>
           </Grid>
         </Grid>
 
-        <Box mt={4} display="flex" justifyContent="space-between">
+        {/* Action Buttons at the Bottom */}
+        <Box mt={4} display="flex" justifyContent="flex-end" gap={2} sx={{ paddingBottom: 3 }}>
           <Button
             startIcon={<ArrowBackIcon />}
             component={RouterLink}
             to="/track-list"
             variant="outlined"
+            sx={{
+              borderRadius: 20,
+              color: 'teal',
+              borderColor: 'teal',
+              '&:hover': { backgroundColor: 'teal', color: 'white' }
+            }}
           >
             Back to Track List
           </Button>
+
           <Box>
             <Button
               startIcon={<EditIcon />}
@@ -117,28 +143,33 @@ const ShowTrackDetails = () => {
               to={`/edit-track/${track._id}`}
               variant="contained"
               color="primary"
-              sx={{ mr: 1 }}
+              sx={{
+                mr: 1,
+                borderRadius: 20,
+                '&:hover': { backgroundColor: '#2c6e95' }
+              }}
             >
               Edit Track
             </Button>
+
             <Button
               startIcon={<DeleteIcon />}
               onClick={onDeleteClick}
               variant="contained"
               color="error"
+              sx={{
+                borderRadius: 20,
+                '&:hover': { backgroundColor: '#d32f2f' }
+              }}
             >
               Delete Track
             </Button>
           </Box>
         </Box>
-      </StyledPaper>
+      </StyledCard>
 
-      <Dialog
-        open={openDialog}
-        onClose={handleDeleteCancel}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
+      {/* Delete Confirmation Dialog */}
+      <Dialog open={openDialog} onClose={handleDeleteCancel} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
         <DialogTitle id="alert-dialog-title">{"Confirm Deletion"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
