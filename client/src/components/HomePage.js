@@ -518,7 +518,7 @@ const HomePage = () => {
         <Grid item xs={12} sm={6} md={4}>
           <Button
             component={Link}
-            to="/notes/*"
+            to="/notes/home"
             variant="contained"
             size="large"
             startIcon={<NotesIcon />}
