@@ -6,9 +6,10 @@ import {  Grid, Typography, TextField, Button, Box, Paper ,InputLabel} from '@mu
 import 'react-toastify/dist/ReactToastify.css';
 import { Container } from '@mui/material';
 import axios from 'axios';
+       
 
 // Set base URL for Axios
-axios.defaults.baseURL = "https://health-tkr.onrender.com/api";
+axios.defaults.baseURL = "https://health-tkr.onrender.com/api/tracks";
 
 const CreateTrack = () => {
   const navigate = useNavigate();

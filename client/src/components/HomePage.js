@@ -518,7 +518,7 @@ const HomePage = () => {
         <Grid item xs={12} sm={6} md={4}>
           <Button
             component={Link}
-            to="/notes/home"
+            to="/notes/*"
             variant="contained"
             size="large"
             startIcon={<NotesIcon />}
@@ -544,19 +544,22 @@ const HomePage = () => {
           </Button>
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
-            <Button
-              component={Link}
-              to="/search"
-              variant="contained"
-              size="large"
-              startIcon={<SearchIcon />}
-              fullWidth
-              sx={{ py: 2 }}
-            >
-              Search Books
-            </Button>
+  <Button
+    component="a"
+    href="/search"
+    target="_self"
+    rel="noopener noreferrer"
+    variant="contained"
+    size="large"
+    startIcon={<SearchIcon />}
+    fullWidth
+    sx={{ py: 2 }}
+  >
+    Search Books
+  </Button>
+</Grid>
+
           </Grid>
-      </Grid>
     </Container>
   );
 };
