@@ -285,6 +285,7 @@ import NotesIcon from '@mui/icons-material/Notes';
 import SearchIcon from '@mui/icons-material/Search';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import PlaylistAddCheckOutlinedIcon from '@mui/icons-material/PlaylistAddCheckOutlined';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import PeopleAltOutlined from '@mui/icons-material/PeopleAltOutlined';
 import InsertChartOutlinedIcon from '@mui/icons-material/InsertChartOutlined';
 import axios from 'axios';
@@ -506,11 +507,11 @@ const HomePage = () => {
           <Grid item xs={12} sm={6} md={4}>
           <Button
             component="a"
-            href="https://docs.google.com/document/d/1951CLEB80bJ5kHb3fJa355BsURLlvO9wbkWmdBRDtbk/edit?tab=t.0"
+            href="https://docs.google.com/document/d/1s2NIMxIjqIe0XhcVG8meiG_llBIKOwTW-gdsZJxbW6E/edit?tab=t.0"
             target="_blank"
             variant="contained"
             size="large"
-            startIcon={<DownloadIcon />}
+            startIcon={<AutoStoriesIcon />}
             fullWidth
             sx={{ py: 2 }}
             rel="noopener noreferrer"
@@ -532,19 +533,7 @@ const HomePage = () => {
             QR Codes
           </Button>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Button
-            component={Link}
-            to="/notes/home"
-            variant="contained"
-            size="large"
-            startIcon={<NotesIcon />}
-            fullWidth
-            sx={{ py: 2 }}
-          >
-            Notes
-          </Button>
-        </Grid>
+      
         <Grid item xs={12} sm={6} md={4}>
           <Button
             component="a"
@@ -572,7 +561,7 @@ const HomePage = () => {
     fullWidth
     sx={{ py: 2 }}
   >
-    Search Books
+    Search Tracks
   </Button>
 </Grid>
 
