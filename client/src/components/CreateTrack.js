@@ -147,7 +147,7 @@ const CreateTrack = () => {
     <Container maxWidth="sm" sx={{ textAlign: 'center', py: 5 }}>
       <ToastContainer />
       <Box sx={{ mb: 4 }}>
-        <Link to="/" style={{ textDecoration: 'none' }}>
+        <Link to="/track-list" style={{ textDecoration: 'none' }}>
           <Button variant="outlined" color="warning" sx={{ mb: 4 }}>
             Show Track List
           </Button>

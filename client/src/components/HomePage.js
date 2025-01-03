@@ -501,7 +501,24 @@ const HomePage = () => {
           >
             Export Data
           </Button>
+          </Grid>
+          
+          <Grid item xs={12} sm={6} md={4}>
+          <Button
+            component="a"
+            href="https://docs.google.com/document/d/1951CLEB80bJ5kHb3fJa355BsURLlvO9wbkWmdBRDtbk/edit?tab=t.0"
+            target="_blank"
+            variant="contained"
+            size="large"
+            startIcon={<DownloadIcon />}
+            fullWidth
+            sx={{ py: 2 }}
+            rel="noopener noreferrer"
+          >
+            My Resume
+          </Button>
         </Grid>
+        
         <Grid item xs={12} sm={6} md={4}>
           <Button
             component={Link}
