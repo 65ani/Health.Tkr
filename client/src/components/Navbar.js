@@ -83,107 +83,78 @@ const Navbar = () => {
           Health Tracker
         </Typography>
 
-       {/* Home Dropdown */}
-       <IconButton
-          color="primary"
-          onClick={handleOpenHome}
-          sx={{
-            paddingX: 2,
-            paddingY: 1,
-            fontWeight: 'bold',
-            fontSize: '1rem',
-            '&:hover': {
-              backgroundColor: 'rgba(0, 123, 255, 0.1)',
-            },
-          }}
-        >
-          Home
-            <ArrowDropDownIcon sx={{ marginLeft: 1 }} />
-        </IconButton>
-        <Menu
-          anchorEl={anchorElHome}
-          open={Boolean(anchorElHome)}
-          onClose={handleCloseHome}
-        >
-          <MenuItem component={RouterLink} to="/">Home</MenuItem>
-          <MenuItem component={RouterLink} to="/home/details">Home Details</MenuItem>
-        </Menu>
+      {/* Home Dropdown */}
+<IconButton
+  color="primary"
+  onClick={handleOpenHome}
+  sx={{
+    paddingX: 1, // Reduced horizontal padding
+    paddingY: 1,
+    fontWeight: 'bold',
+    fontSize: '1rem',
+    '&:hover': {
+      backgroundColor: 'rgba(0, 123, 255, 0.1)',
+    },
+  }}
+>
+  Home
+  <ArrowDropDownIcon sx={{ marginLeft: 0.5 }} /> {/* Reduced icon spacing */}
+</IconButton>
+<Menu
+  anchorEl={anchorElHome}
+  open={Boolean(anchorElHome)}
+  onClose={handleCloseHome}
+>
+</Menu>
 
-        {/* Notes Dropdown */}
-        <IconButton
-          color="primary"
-          onClick={handleOpenNotes}
-          sx={{
-            paddingX: 2,
-            paddingY: 1,
-            fontWeight: 'bold',
-            fontSize: '1rem',
-            '&:hover': {
-              backgroundColor: 'rgba(0, 123, 255, 0.1)',
-            },
-          }}
-        >
-          Notes
-          <ArrowDropDownIcon sx={{ marginLeft: 1 }} />
-        </IconButton>
-        <Menu
-          anchorEl={anchorElNotes}
-          open={Boolean(anchorElNotes)}
-          onClose={handleCloseNotes}
-        >
-          <MenuItem component={RouterLink} to="/notes">View Notes</MenuItem>
-          <MenuItem component={RouterLink} to="/notes/add">Add Notes</MenuItem>
-        </Menu>
+{/* About Us Dropdown */}
+<IconButton
+  color="primary"
+  onClick={handleOpenAbout}
+  sx={{
+    paddingX: 1, // Reduced horizontal padding
+    paddingY: 1,
+    fontWeight: 'bold',
+    fontSize: '1rem',
+    '&:hover': {
+      backgroundColor: 'rgba(0, 123, 255, 0.1)',
+    },
+  }}
+>
+  About Us
+  <ArrowDropDownIcon sx={{ marginLeft: 0.5 }} /> {/* Reduced icon spacing */}
+</IconButton>
+<Menu
+  anchorEl={anchorElAbout}
+  open={Boolean(anchorElAbout)}
+  onClose={handleCloseAbout}
+>
+  <MenuItem component={RouterLink} to="/about">About Health Tracker</MenuItem>
+  <MenuItem component={RouterLink} to="/about/team">Our Team</MenuItem>
+</Menu>
 
-        {/* About Us Dropdown */}
-        <IconButton
-          color="primary"
-          onClick={handleOpenAbout}
-          sx={{
-            paddingX: 2,
-            paddingY: 1,
-            fontWeight: 'bold',
-            fontSize: '1rem',
-            '&:hover': {
-              backgroundColor: 'rgba(0, 123, 255, 0.1)',
-            },
-          }}
-        >
-          About Us
-          <ArrowDropDownIcon sx={{ marginLeft: 1 }} />
-        </IconButton>
-        <Menu
-          anchorEl={anchorElAbout}
-          open={Boolean(anchorElAbout)}
-          onClose={handleCloseAbout}
-        >
-          <MenuItem component={RouterLink} to="/about">About Health Tracker</MenuItem>
-          <MenuItem component={RouterLink} to="/about/team">Our Team</MenuItem>
-        </Menu>
-
-        {/* GitHub Button */}
-        <Button
-          component="a"
-          href="https://github.com/65ani/Health.Tkr"
-          target="_blank"
-          rel="noopener noreferrer"
-          variant="text" // No border or background
-          color="primary"
-          sx={{
-            paddingX: 2,
-            paddingY: 1,
-            textTransform: 'none',
-            fontWeight: 'bold',
-            fontSize: '1rem',
-            display: 'flex',
-            alignItems: 'center',
-            '&:hover': {
-            },
-          }}
-        >
-          <GitHubIcon sx={{ marginRight: 1 }} />
-          GitHub
-        </Button>
+{/* GitHub Button */}
+<Button
+  component="a"
+  href="https://github.com/65ani/Health.Tkr"
+  target="_blank"
+  rel="noopener noreferrer"
+  variant="text"
+  color="primary"
+  sx={{
+    paddingX: 1, // Reduced horizontal padding
+    paddingY: 1,
+    textTransform: 'none',
+    fontWeight: 'bold',
+    fontSize: '1rem',
+    display: 'flex',
+    alignItems: 'center',
+    '&:hover': {},
+  }}
+>
+  <GitHubIcon sx={{ marginRight: 0.5 }} /> {/* Reduced icon spacing */}
+  GitHub
+</Button>
       </Toolbar>
     </AppBar>
   );
