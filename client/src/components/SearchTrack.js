@@ -89,103 +89,131 @@ const SearchTrack = () => {
   }
 
   return (
-    <Box sx={{ maxWidth: 800, mx: 'auto', p: 3, mt: 5, bgcolor: '#f9f9f9', borderRadius: 2 }}>
-      <Typography variant="h4" align="center" gutterBottom>
+    <Box sx={{ maxWidth: 800, mx: 'auto', p: 3, mt: 5, bgcolor: '#FFE4E1', borderRadius: 2, boxShadow: 3 }}>
+      <Typography variant="h4" align="center" gutterBottom sx={{ color: '#FF6F61' }}>
         Search Track
       </Typography>
-      <Typography variant="body1" align="center" color="textSecondary" gutterBottom>
+      <Typography variant="body1" align="center" sx={{ color: '#D97706', mb: 2 }}>
         Find a track record from the database
       </Typography>
-
+  
       {/* Search and Filter Section */}
-      <Card sx={{ p: 3, mt: 3 }}>
-        <CardContent>
-          <Grid container spacing={2} alignItems="center">
-            {/* Search Field */}
-            <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                label="Search"
-                value={filters.searchTerm}
-                onChange={(e) => setFilters({ ...filters, searchTerm: e.target.value })}
-                InputProps={{
-                  startAdornment: <SearchIcon sx={{ mr: 1, color: 'text.secondary' }} />,
-                }}
-              />
-            </Grid>
+      <Card sx={{ p: 3, mt: 3, bgcolor: '#6B46C1', borderRadius: 2, boxShadow: 3 }}>
+  <CardContent>
+    <Grid container spacing={2} alignItems="center">
+      {/* Search Field */}
+      <Grid item xs={12} sm={6}>
+        <TextField
+          fullWidth
+          label="Search"
+          value={filters.searchTerm}
+          onChange={(e) => setFilters({ ...filters, searchTerm: e.target.value })}
+          InputProps={{
+            startAdornment: <SearchIcon sx={{ mr: 1, color: '#FFFFFF' }} />, // White icon for contrast
+          }}
+          sx={{
+            '& .MuiInputLabel-root': { color: '#FFFFFF' }, // White label for contrast
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': { borderColor: '#FFFFFF' },
+              '&:hover fieldset': { borderColor: '#E9D8FD' }, // Light purple hover effect
+            },
+          }}
+        />
+      </Grid>
 
-            {/* Search By Dropdown */}
-            <Grid item xs={12} sm={6}>
-              <FormControl fullWidth>
-                <InputLabel>Search By</InputLabel>
-                <Select
-                  value={filters.searchField}
-                  label="Search By"
-                  onChange={(e) => setFilters({ ...filters, searchField: e.target.value })}
-                >
-                  <MenuItem value="Track_name">Track Name</MenuItem>
-                  <MenuItem value="steps">steps</MenuItem>
-                  <MenuItem value="caloriesburned">caloriesburned</MenuItem>
-                  <MenuItem value="distancecovered">distancecovered</MenuItem>
-                  <MenuItem value="weight">weight</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
+      {/* Search By Dropdown */}
+      <Grid item xs={12} sm={6}>
+        <FormControl fullWidth>
+          <InputLabel sx={{ color: '#FFFFFF' }}>Search By</InputLabel>
+          <Select
+            value={filters.searchField}
+            label="Search By"
+            onChange={(e) => setFilters({ ...filters, searchField: e.target.value })}
+            sx={{
+              color: '#FFFFFF', // White text
+              '& .MuiOutlinedInput-notchedOutline': { borderColor: '#FFFFFF' },
+              '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#E9D8FD' },
+            }}
+          >
+            <MenuItem value="Track_name">Track Name</MenuItem>
+            <MenuItem value="steps">Steps</MenuItem>
+            <MenuItem value="caloriesburned">Calories Burned</MenuItem>
+            <MenuItem value="distancecovered">Distance Covered</MenuItem>
+            <MenuItem value="weight">Weight</MenuItem>
+          </Select>
+        </FormControl>
+      </Grid>
 
-            {/* Sort By Dropdown */}
-            <Grid item xs={12} sm={6}>
-              <FormControl fullWidth>
-                <InputLabel>Sort By</InputLabel>
-                <Select
-                  value={filters.sortBy}
-                  label="Sort By"
-                  onChange={(e) => setFilters({ ...filters, sortBy: e.target.value })}
-                >
-                  <MenuItem value="Track_name">Track Name</MenuItem>
-                  <MenuItem value="steps">steps</MenuItem>
-                  <MenuItem value="caloriesburned">caloriesburned</MenuItem>
-                  <MenuItem value="distancecovered">distancecovered</MenuItem>
-                  <MenuItem value="weight">weight</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
+      {/* Sort By Dropdown */}
+      <Grid item xs={12} sm={6}>
+        <FormControl fullWidth>
+          <InputLabel sx={{ color: '#FFFFFF' }}>Sort By</InputLabel>
+          <Select
+            value={filters.sortBy}
+            label="Sort By"
+            onChange={(e) => setFilters({ ...filters, sortBy: e.target.value })}
+            sx={{
+              color: '#FFFFFF', // White text
+              '& .MuiOutlinedInput-notchedOutline': { borderColor: '#FFFFFF' },
+              '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#E9D8FD' },
+            }}
+          >
+            <MenuItem value="Track_name">Track Name</MenuItem>
+            <MenuItem value="steps">Steps</MenuItem>
+            <MenuItem value="caloriesburned">Calories Burned</MenuItem>
+            <MenuItem value="distancecovered">Distance Covered</MenuItem>
+            <MenuItem value="weight">Weight</MenuItem>
+          </Select>
+        </FormControl>
+      </Grid>
 
-            {/* Sort Order */}
-            <Grid item xs={12} sm={6}>
-              <FormControl fullWidth>
-                <InputLabel>Order</InputLabel>
-                <Select
-                  value={filters.sortOrder}
-                  label="Order"
-                  onChange={(e) => setFilters({ ...filters, sortOrder: e.target.value })}
-                >
-                  <MenuItem value="asc">Ascending</MenuItem>
-                  <MenuItem value="desc">Descending</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
+      {/* Sort Order */}
+      <Grid item xs={12} sm={6}>
+        <FormControl fullWidth>
+          <InputLabel sx={{ color: '#FFFFFF' }}>Order</InputLabel>
+          <Select
+            value={filters.sortOrder}
+            label="Order"
+            onChange={(e) => setFilters({ ...filters, sortOrder: e.target.value })}
+            sx={{
+              color: '#FFFFFF', // White text
+              '& .MuiOutlinedInput-notchedOutline': { borderColor: '#FFFFFF' },
+              '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#E9D8FD' },
+            }}
+          >
+            <MenuItem value="asc">Ascending</MenuItem>
+            <MenuItem value="desc">Descending</MenuItem>
+          </Select>
+        </FormControl>
+      </Grid>
 
-            {/* Reset Filters Button */}
-            <Grid item xs={12}>
-              <Box display="flex" justifyContent="center">
-                <Button
-                  variant="outlined"
-                  startIcon={<RestartAltIcon />}
-                  onClick={resetFilters}
-                >
-                  Reset Filters
-                </Button>
-              </Box>
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
+      {/* Reset Filters Button */}
+      <Grid item xs={12}>
+        <Box display="flex" justifyContent="center">
+          <Button
+            variant="outlined"
+            startIcon={<RestartAltIcon />}
+            onClick={resetFilters}
+            sx={{
+              color: '#FFFFFF',
+              borderColor: '#FFFFFF',
+              '&:hover': { bgcolor: '#553C9A', borderColor: '#FFFFFF' }, // Slightly darker purple on hover
+            }}
+          >
+            Reset Filters
+          </Button>
+        </Box>
+      </Grid>
+    </Grid>
+  </CardContent>
+</Card>
 
+  
       {/* Results Section */}
-      <Typography variant="body2" color="textSecondary" sx={{ mt: 3 }}>
+      <Typography variant="body2" sx={{ mt: 3, color: '#A855F7' }}>
         Found {filteredTrack.length} tracks
       </Typography>
-
+  
       <Grid container spacing={3} sx={{ mt: 3 }}>
         {filteredTrack.map((track) => (
           <Grid item xs={12} sm={6} md={4} key={track._id}>
@@ -194,6 +222,7 @@ const SearchTrack = () => {
         ))}
       </Grid>
     </Box>
+  
   );
 };
 

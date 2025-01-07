@@ -98,7 +98,6 @@ const Navbar = () => {
   }}
 >
   Home
-  <ArrowDropDownIcon sx={{ marginLeft: 0.5 }} /> {/* Reduced icon spacing */}
 </IconButton>
 <Menu
   anchorEl={anchorElHome}
