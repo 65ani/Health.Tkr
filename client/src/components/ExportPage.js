@@ -43,7 +43,7 @@ const ExportPage = () => {
 
     // Create table data
     const tableColumn = ["name", "date" , "steps", "caloriesburned", "distancecovered", "weight"];
-    const tableRows = track.map(t => [
+    const tableRows = track.map(track => [
       track.name,
       track.date,
       track.steps,
@@ -62,7 +62,7 @@ const ExportPage = () => {
       headStyles: { fillColor: [41, 128, 185], textColor: 255 }
     });
 
-    doc.save('tracks-list.pdf');
+    doc.save('track-list.pdf');
   };
 
   const exportToExcel = () => {
@@ -82,22 +82,23 @@ const ExportPage = () => {
     const data = new Blob([excelBuffer], {
       type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     });
-    saveAs(data, 'tracks-list.xlsx');
+    saveAs(data, 'track-list.xlsx');
   };
 
   const exportToCSV = () => {
     const worksheet = XLSX.utils.json_to_sheet(track.map(track => ({ 
-      name: track.name, // Corrected to use the correct object property
+      name: track.name,
+      date: formatDate(track.date), // Corrected to use the correct object property
       steps: track.steps,
       caloriesburned: track.caloriesburned,
       distancecovered: track.distancecovered,
       weight: track.weight,
-        // 'Published Date': new Date(t.date).toLocaleDateString(),
+
     })));
 
     const csv = XLSX.utils.sheet_to_csv(worksheet);
     const data = new Blob([csv], { type: 'text/csv;charset=utf-8' });
-    saveAs(data, 'tracks-list.csv');
+    saveAs(data, 'track-list.csv');
   };
 
   const exportToText = () => {
@@ -115,7 +116,7 @@ const ExportPage = () => {
     });
 
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-    saveAs(blob, 'tracks-list.txt');
+    saveAs(blob, 'track-list.txt');
   };
 
   if (loading) {
