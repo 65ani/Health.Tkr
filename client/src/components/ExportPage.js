@@ -26,6 +26,12 @@ const ExportPage = () => {
       });
   }, []);
 
+  const formatDate = (date) => {
+    if (!date) return 'N/A';
+    const parsedDate = new Date(date);
+    return isNaN(parsedDate) ? 'N/A' : parsedDate.toLocaleDateString();
+  };
+
   const exportToPDF = () => {
     const doc = new jsPDF();
     
@@ -36,9 +42,10 @@ const ExportPage = () => {
     doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 14, 25);
 
     // Create table data
-    const tableColumn = ["name", "steps", "caloriesburned", "distancecovered", "weight"];
+    const tableColumn = ["name", "date" , "steps", "caloriesburned", "distancecovered", "weight"];
     const tableRows = track.map(t => [
       track.name,
+      track.date,
       track.steps,
       track.caloriesburned,
       track.distancecovered,
@@ -60,7 +67,8 @@ const ExportPage = () => {
 
   const exportToExcel = () => {
     const worksheet = XLSX.utils.json_to_sheet(track.map(t => ({ // Changed from tracks to track
-      name: track.name, // Corrected to use the correct object property
+      name: track.name, 
+      date: formatDate(track.date),// Corrected to use the correct object property
       steps: track.steps,
       caloriesburned: track.caloriesburned,
       distancecovered: track.distancecovered,
@@ -78,7 +86,7 @@ const ExportPage = () => {
   };
 
   const exportToCSV = () => {
-    const worksheet = XLSX.utils.json_to_sheet(track.map(track => ({ // Changed from tracks to track
+    const worksheet = XLSX.utils.json_to_sheet(track.map(track => ({ 
       name: track.name, // Corrected to use the correct object property
       steps: track.steps,
       caloriesburned: track.caloriesburned,
@@ -100,8 +108,8 @@ const ExportPage = () => {
       content += `${index + 1}. TRACK DETAILS\n`;
       content += `name: ${track.name}\n`; // Changed from track.name to t.name
       content += `steps: ${track.steps}\n`;
-      content += `caloriesBurned: ${track.caloriesburned}\n`;
-      content += `distanceCovered: ${track.distancecovered}\n`;
+      content += `caloriesburned: ${track.caloriesburned}\n`;
+      content += `distancecovered: ${track.distancecovered}\n`;
       content += `weight: ${track.weight}\n`; // Changed from track.weight to t.weight
       content += '\n----------------------------\n\n';
     });
