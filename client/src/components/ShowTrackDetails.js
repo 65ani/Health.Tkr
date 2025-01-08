@@ -124,7 +124,7 @@ const ShowTrackDetails = () => {
             <strong>Steps :</strong> {track.steps}
           </Typography>
           <Typography variant="body1">
-  <strong>Calories Burned (kcal) :</strong> {track. caloriesburned}
+  <strong>Calories Burned (kcal) :</strong> {track.caloriesburned}
 </Typography>
 <Typography variant="body1">
   <strong>Distance Covered (km) :</strong> {track.distancecovered}

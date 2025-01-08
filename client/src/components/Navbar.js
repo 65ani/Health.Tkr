@@ -1,160 +1,146 @@
 import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Box,
-  IconButton,
-  Menu,
-  MenuItem,
-  Paper,
-} from '@mui/material';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import HomeIcon from '@mui/icons-material/Home';
-import BookIcon from '@mui/icons-material/Book';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { AppBar, Toolbar, IconButton, Button, Menu, MenuItem, Typography, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
-
-const notesPages = [
-  { title: 'Home', path: '/notes/home', icon: <MenuBookOutlinedIcon /> },
-  { title: 'Schedule', path: '/notes/schedule', icon: <CalendarMonthOutlinedIcon /> },
-];
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { Link as RouterLink } from 'react-router-dom';
 
 const Navbar = () => {
-  // States for handling dropdown open/close
   const [anchorElHome, setAnchorElHome] = useState(null);
-  const [anchorElNotes, setAnchorElNotes] = useState(null);
   const [anchorElAbout, setAnchorElAbout] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [dialogContent, setDialogContent] = useState('');
 
-  // Open/close handlers for dropdowns
-  const handleOpenHome = (event) => setAnchorElHome(event.currentTarget);
-  const handleCloseHome = () => setAnchorElHome(null);
+  const handleOpenHome = (event) => {
+    setAnchorElHome(event.currentTarget);
+  };
 
-  const handleOpenNotes = (event) => setAnchorElNotes(event.currentTarget);
-  const handleCloseNotes = () => setAnchorElNotes(null);
+  const handleCloseHome = () => {
+    setAnchorElHome(null);
+  };
 
-  const handleOpenAbout = (event) => setAnchorElAbout(event.currentTarget);
-  const handleCloseAbout = () => setAnchorElAbout(null);
+  const handleOpenAbout = (event) => {
+    setAnchorElAbout(event.currentTarget);
+  };
+
+  const handleCloseAbout = () => {
+    setAnchorElAbout(null);
+  };
+
+  const handleOpenDialog = (content) => {
+    setDialogContent(content);
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+    setDialogContent('');
+  };
 
   return (
-    <AppBar
-      position="sticky"
-      sx={{
-        backgroundColor: 'rgba(255, 255, 255, 0.9)', // Semi-transparent white background
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)', // Light shadow for elevation
-        backdropFilter: 'blur(10px)', // Blurred background for modern look
-        paddingX: 4, // Horizontal padding for spacing
-      }}
-    >
-      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        {/* Logo Section */}
-        <Typography
-          variant="h5"
-          component={RouterLink}
-          to="/"
+    <AppBar position="sticky" color="primary">
+      <Toolbar sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+        {/* Home Dropdown */}
+        <IconButton
+          color="primary"
+          onClick={handleOpenHome}
           sx={{
-            textDecoration: 'none',
-            color: 'primary.main',
-            fontFamily: 'Poppins, sans-serif',
+            paddingX: 1,
+            paddingY: 1,
             fontWeight: 'bold',
-            fontSize: '1.8rem',
-            letterSpacing: '0.1em',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 1,
+            fontSize: '1rem',
+            '&:hover': {
+              backgroundColor: 'rgba(0, 123, 255, 0.1)',
+            },
           }}
         >
-          <Box
-            component="img"
-            src="https://img.icons8.com/?size=100&id=46599&format=png&color=000000" // Replace with your logo's path
-            alt="Logo"
-            sx={{
-              height: '40px',
-              width: '40px',
-              padding: 0, // Removes any padding inside the border
-              margin: 0, // Removes any margin outside the border
-            }}
-          />
-          Health Tracker
-        </Typography>
+          Home
+        </IconButton>
+        <Menu
+          anchorEl={anchorElHome}
+          open={Boolean(anchorElHome)}
+          onClose={handleCloseHome}
+        >
+          {/* Add home menu items here if needed */}
+        </Menu>
 
-      {/* Home Dropdown */}
-<IconButton
-  color="primary"
-  onClick={handleOpenHome}
-  sx={{
-    paddingX: 1, // Reduced horizontal padding
-    paddingY: 1,
-    fontWeight: 'bold',
-    fontSize: '1rem',
-    '&:hover': {
-      backgroundColor: 'rgba(0, 123, 255, 0.1)',
-    },
-  }}
->
-  Home
-</IconButton>
-<Menu
-  anchorEl={anchorElHome}
-  open={Boolean(anchorElHome)}
-  onClose={handleCloseHome}
->
-</Menu>
+        {/* About Us Dropdown */}
+        <IconButton
+          color="primary"
+          onClick={handleOpenAbout}
+          sx={{
+            paddingX: 1,
+            paddingY: 1,
+            fontWeight: 'bold',
+            fontSize: '1rem',
+            '&:hover': {
+              backgroundColor: 'rgba(0, 123, 255, 0.1)',
+            },
+            marginLeft: 2,
+          }}
+        >
+          About Us
+          <ArrowDropDownIcon sx={{ marginLeft: 0.5 }} />
+        </IconButton>
+        <Menu
+          anchorEl={anchorElAbout}
+          open={Boolean(anchorElAbout)}
+          onClose={handleCloseAbout}
+        >
+          <MenuItem onClick={() => handleOpenDialog('healthTracker')}>
+            About Health Tracker
+          </MenuItem>
+          <MenuItem onClick={() => handleOpenDialog('ourTeam')}>
+            Our Team
+          </MenuItem>
+        </Menu>
 
-{/* About Us Dropdown */}
-<IconButton
-  color="primary"
-  onClick={handleOpenAbout}
-  sx={{
-    paddingX: 1, // Reduced horizontal padding
-    paddingY: 1,
-    fontWeight: 'bold',
-    fontSize: '1rem',
-    '&:hover': {
-      backgroundColor: 'rgba(0, 123, 255, 0.1)',
-    },
-  }}
->
-  About Us
-  <ArrowDropDownIcon sx={{ marginLeft: 0.5 }} /> {/* Reduced icon spacing */}
-</IconButton>
-<Menu
-  anchorEl={anchorElAbout}
-  open={Boolean(anchorElAbout)}
-  onClose={handleCloseAbout}
->
-  <MenuItem component={RouterLink} to="/about">About Health Tracker</MenuItem>
-  <MenuItem component={RouterLink} to="/about/team">Our Team</MenuItem>
-</Menu>
-
-{/* GitHub Button */}
-<Button
-  component="a"
-  href="https://github.com/65ani/Health.Tkr"
-  target="_blank"
-  rel="noopener noreferrer"
-  variant="text"
-  color="primary"
-  sx={{
-    paddingX: 1, // Reduced horizontal padding
-    paddingY: 1,
-    textTransform: 'none',
-    fontWeight: 'bold',
-    fontSize: '1rem',
-    display: 'flex',
-    alignItems: 'center',
-    '&:hover': {},
-  }}
->
-  <GitHubIcon sx={{ marginRight: 0.5 }} /> {/* Reduced icon spacing */}
-  GitHub
-</Button>
+        {/* GitHub Button */}
+        <Button
+          component="a"
+          href="https://github.com/65ani/Health.Tkr"
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="text"
+          color="primary"
+          sx={{
+            paddingX: 1,
+            paddingY: 1,
+            textTransform: 'none',
+            fontWeight: 'bold',
+            fontSize: '1rem',
+            display: 'flex',
+            alignItems: 'center',
+            '&:hover': {},
+            marginLeft: 2,
+          }}
+        >
+          <GitHubIcon sx={{ marginRight: 0.5 }} />
+          GitHub
+        </Button>
       </Toolbar>
+
+      {/* Dialog for About Us Content */}
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle>{dialogContent === 'healthTracker' ? 'About Health Tracker' : 'Our Team'}</DialogTitle>
+        <DialogContent>
+          {dialogContent === 'healthTracker' ? (
+            <Typography style={{ fontSize: '14px' }}>
+              Health Tracker is an innovative platform designed to help users monitor and manage their health and fitness goals effectively.
+              With features like tracking daily steps, calories burned, distance covered, and weight, the app provides comprehensive insights into your physical progress.
+            </Typography>
+          ) : (
+            <Typography style={{ fontSize: '14px' }}>
+              Our team consists of dedicated professionals passionate about health and technology. We are committed to providing the best possible tools to help you achieve your wellness goals.
+              Our team includes fitness experts, software developers, and designers working together to create an intuitive user experience.
+            </Typography>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </AppBar>
   );
 };
