@@ -18,6 +18,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 
+const URL = process.env.REACT_APP_API_URL; 
+
 const StyledCard = styled(Card)(({ theme }) => ({
   boxShadow: theme.shadows[5],
   borderRadius: 8,
@@ -33,7 +35,7 @@ const ShowTrackDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`https://health-tkr.onrender.com/api/tracks/${id}`)
+      .get(`${URL}/api/tracks/${id}`)
       .then((res) => {
         setTrack(res.data);
       })
@@ -50,7 +52,7 @@ const ShowTrackDetails = () => {
 
   const handleDeleteConfirm = () => {
     axios
-      .delete(`https://health-tkr.onrender.com/api/tracks/${id}`)
+      .delete(`${URL}/api/tracks/${id}`)
       .then(() => {
         navigate('/track-list');
       })
@@ -68,116 +70,116 @@ const ShowTrackDetails = () => {
 
   return (
     <Container maxWidth="lg" sx={{ padding: 4 }}>
-  <StyledCard>
-    <Grid
-      container
-      spacing={4}
-      sx={{
-        padding: 3, // Adds padding inside the grid
-      }}
-    >
-      {/* Track Name and Date Section */}
-      <Grid item xs={12}>
-        <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 600 }}>
-          Track Name: <span style={{ color: 'teal' }}>{track.name}</span>
-        </Typography>
-        <Typography variant="h6" color="textSecondary" gutterBottom sx={{ fontSize: 18 }}>
-          Date: <span style={{ color: '#FF4081' }}>{track.date}</span>
-        </Typography>
-        <Divider sx={{ my: 2 }} />
-      </Grid>
-
-      {/* Image Section */}
-      <Grid
-        item
-        xs={12}
-        md={4}
-        sx={{
-          paddingLeft: 2, // Space to the left of the image
-        }}
-      >
-        <StyledCard
+      <StyledCard>
+        <Grid
+          container
+          spacing={4}
           sx={{
-            borderRadius: 5,
+            padding: 3, // Adds padding inside the grid
           }}
         >
-          <CardMedia
-            component="img"
-            height="300"
-            image={track.imageUrl || 'https://tinyurl.com/kep692zx'}
-            alt={track.name}
+          {/* Track Name and Date Section */}
+          <Grid item xs={12}>
+            <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 600 }}>
+              Track Name: <span style={{ color: 'teal' }}>{track.name}</span>
+            </Typography>
+            <Typography variant="h6" color="textSecondary" gutterBottom sx={{ fontSize: 18 }}>
+              Date: <span style={{ color: '#FF4081' }}>{track.date}</span>
+            </Typography>
+            <Divider sx={{ my: 2 }} />
+          </Grid>
+
+          {/* Image Section */}
+          <Grid
+            item
+            xs={12}
+            md={4}
             sx={{
-              objectFit: 'cover',
-              borderRadius: 5,
+              paddingLeft: 2, // Space to the left of the image
             }}
-          />
-        </StyledCard>a
-      </Grid>
+          >
+            <StyledCard
+              sx={{
+                borderRadius: 5,
+              }}
+            >
+              <CardMedia
+                component="img"
+                height="300"
+                image={track.imageUrl || 'https://tinyurl.com/kep692zx'}
+                alt={track.name}
+                sx={{
+                  objectFit: 'cover',
+                  borderRadius: 5,
+                }}
+              />
+            </StyledCard>
+          </Grid>
 
-      {/* Track Details Section */}
-      <Grid item xs={12} md={8}>
-        <Box display="flex" flexDirection="column" sx={{ gap: 2 }}>
-          <Typography variant="h6" sx={{ color: 'pink', fontWeight: 'bold' }}>
-            Track Details:
-          </Typography>
-          <Typography variant="body1">
-            <strong>Steps :</strong> {track.steps}
-          </Typography>
-          <Typography variant="body1">
-  <strong>Calories Burned (kcal) :</strong> {track.caloriesburned}
-</Typography>
-<Typography variant="body1">
-  <strong>Distance Covered (km) :</strong> {track.distancecovered}
-</Typography>
-          <Typography variant="body1">
-            <strong>Current Weight (kg) :</strong> {track.weight}
-          </Typography>
-        </Box>
-      </Grid>
-    </Grid>
+          {/* Track Details Section */}
+          <Grid item xs={12} md={8}>
+            <Box display="flex" flexDirection="column" sx={{ gap: 2 }}>
+              <Typography variant="h6" sx={{ color: 'pink', fontWeight: 'bold' }}>
+                Track Details:
+              </Typography>
+              <Typography variant="body1">
+                <strong>Steps :</strong> {track.steps}
+              </Typography>
+              <Typography variant="body1">
+                <strong>Calories Burned (kcal) :</strong> {track.caloriesburned}
+              </Typography>
+              <Typography variant="body1">
+                <strong>Distance Covered (km) :</strong> {track.distancecovered}
+              </Typography>
+              <Typography variant="body1">
+                <strong>Current Weight (kg) :</strong> {track.weight}
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
 
-    {/* Action Buttons */}
-    <Box mt={4} display="flex" justifyContent="flex-end" gap={2} sx={{ paddingBottom: 3 }}>
-      <Button
-        startIcon={<ArrowBackIcon />}
-        component={RouterLink}
-        to="/track-list"
-        variant="outlined"
-        sx={{
-          borderRadius: 20,
-          color: 'teal',
-          borderColor: 'teal',
-          '&:hover': { backgroundColor: 'teal', color: 'white' },
-        }}
-      >
-        Back to Track List
-      </Button>
-      <Box>
-        <Button
-          startIcon={<EditIcon />}
-          component={RouterLink}
-          to={`/edit-track/${track._id}`}
-          variant="contained"
-          color="primary"
-          sx={{
-            mr: 1,
-            borderRadius: 20,
-            '&:hover': { backgroundColor: '#2c6e95' },
-          }}
-        >
-          Edit Track
-        </Button>
-        <Button
-          startIcon={<DeleteIcon />}
-          onClick={onDeleteClick}
-          variant="contained"
-          color="error"
-          sx={{
-            borderRadius: 20,
-            '&:hover': { backgroundColor: '#d32f2f' },
-          }}
-        >
-         Delete Track
+        {/* Action Buttons */}
+        <Box mt={4} display="flex" justifyContent="flex-end" gap={2} sx={{ paddingBottom: 3 }}>
+          <Button
+            startIcon={<ArrowBackIcon />}
+            component={RouterLink}
+            to="/track-list"
+            variant="outlined"
+            sx={{
+              borderRadius: 20,
+              color: 'teal',
+              borderColor: 'teal',
+              '&:hover': { backgroundColor: 'teal', color: 'white' },
+            }}
+          >
+            Back to Track List
+          </Button>
+          <Box>
+            <Button
+              startIcon={<EditIcon />}
+              component={RouterLink}
+              to={`/edit-track/${track._id}`}
+              variant="contained"
+              color="primary"
+              sx={{
+                mr: 1,
+                borderRadius: 20,
+                '&:hover': { backgroundColor: '#2c6e95' },
+              }}
+            >
+              Edit Track
+            </Button>
+            <Button
+              startIcon={<DeleteIcon />}
+              onClick={onDeleteClick}
+              variant="contained"
+              color="error"
+              sx={{
+                borderRadius: 20,
+                '&:hover': { backgroundColor: '#d32f2f' },
+              }}
+            >
+              Delete Track
             </Button>
           </Box>
         </Box>
@@ -200,8 +202,7 @@ const ShowTrackDetails = () => {
           </Button>
         </DialogActions>
       </Dialog>
-</Container>
-
+    </Container>
   );
 };
 

@@ -1,6 +1,5 @@
- 
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom'; 
 import {
   Container,
   Typography,
@@ -28,6 +27,8 @@ import PeopleAltOutlined from '@mui/icons-material/PeopleAltOutlined';
 import InsertChartOutlinedIcon from '@mui/icons-material/InsertChartOutlined';
 import axios from 'axios';
 
+const URL = process.env.REACT_APP_API_URL; 
+
 const HomePage = () => {
   const [stats, setStats] = useState({
     totalTracks: 0,
@@ -35,11 +36,11 @@ const HomePage = () => {
     recentTrack: null,
   });
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate(); // Hook to navigate programmatically
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     axios
-      .get('https://health-tkr.onrender.com/api/tracks')
+      .get(`${URL}/api/tracks`)
       .then((res) => {
         const track = res.data;
         const uniqueAuthors = new Set(track.map((track) => track.author)).size;
@@ -59,7 +60,6 @@ const HomePage = () => {
         setLoading(false);
       });
   }, []);
-
 
   if (loading) {
     return (
@@ -82,136 +82,116 @@ const HomePage = () => {
           </Typography>
         </Grid>
 
-       {/* Interactive Feature Section */}
-<Grid item xs={12} md={6}>
-  <Paper
-    elevation={4}
-    sx={{
-      p: 4,
-      textAlign: 'center',
-      borderRadius: '16px',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      maxWidth: 420,
-      margin: '0 auto',
-      backgroundColor: 'background.paper', // Using theme color
-      boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.2)',
-    }}
-  >
-    <Typography
-      variant="h5"
-      color="text.primary"
-      sx={{
-        fontWeight: 500,
-        mb: 2,
-        textTransform: 'capitalize',
-      }}
-    >
-      Start a New Health Journey
-    </Typography>
-    <Typography
-      variant="body1"
-      color="text.secondary"
-      sx={{
-        mb: 4,
-        lineHeight: 1.6,
-      }}
-    >
-      Track your progress and achieve your fitness goals by creating a personalized health plan today💪.
-    </Typography>
-    <Button
-      component={Link}
-      to="/create-track"
-      variant="contained"
-      size="large"
-      sx={{
-        px: 4,
-        py: 1.5,
-        borderRadius: '24px',
-        backgroundColor: 'highlightMed', // Updated color
-        color: 'text.primary',
-        '&:hover': {
-          backgroundColor: 'highlightHigh', // Hover color for better contrast
-        },
-      }}
-    >
-      Create Now
-    </Button>
-  </Paper>
-</Grid>
-
+        {/* Interactive Feature Section */}
+        <Grid item xs={12} md={6}>
+          <Paper
+            elevation={4}
+            sx={{
+              p: 4,
+              textAlign: 'center',
+              borderRadius: '16px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              maxWidth: 420,
+              margin: '0 auto',
+              backgroundColor: 'background.paper', 
+              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.2)',
+            }}
+          >
+            <Typography variant="h5" color="text.primary" sx={{ fontWeight: 500, mb: 2 }}>
+              Start a New Health Journey
+            </Typography>
+            <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
+              Track your progress and achieve your fitness goals by creating a personalized health plan today💪.
+            </Typography>
+            <Button
+              component={Link}
+              to="/create-track"
+              variant="contained"
+              size="large"
+              sx={{
+                px: 4,
+                py: 1.5,
+                borderRadius: '24px',
+                backgroundColor: 'highlightMed', 
+                color: 'text.primary',
+                '&:hover': {
+                  backgroundColor: 'highlightHigh', 
+                },
+              }}
+            >
+              Create Now
+            </Button>
+          </Paper>
+        </Grid>
       </Grid>
 
       {/* Stats Section */}
-<Grid container spacing={4} sx={{ my: 6, justifyContent: 'center' }}>
-  {[
-    {
-      icon: <InsertChartOutlinedIcon fontSize="large" sx={{ color: '#78e0b2' }} />, // Aqua green
-      title: stats.totalTracks,
-      subtitle: 'Total Tracks',
-      bgColor: 'primary.main',
-    },
-    {
-      icon: <PeopleAltOutlined fontSize="large" sx={{ color: '#ffac33' }} />, // Soft orange
-      title: stats.uniqueAuthors,
-      subtitle: 'Unique Tracks',
-      bgColor: 'highlightMed',
-    },
-    {
-      icon: <PlaylistAddCheckOutlinedIcon fontSize="large" sx={{ color: '#f287ae' }} />, // Light rose
-      title: stats.recentTrack?.title || 'No recent tracks',
-      subtitle: 'Latest Track',
-      bgColor: 'highlightHigh',
-    },
-  ].map(({ icon, title, subtitle, bgColor }, index) => (
-    <Grid item xs={12} sm={6} md={4} key={index}>
-      <Card
-        sx={{
-          textAlign: 'center',
-          p: 4,
-          borderRadius: '16px',
-          background: `linear-gradient(135deg, ${bgColor}, ${bgColor}90)`,
-          color: 'text.primary',
-          boxShadow: '0px 6px 20px rgba(0, 0, 0, 0.25)',
-          transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-          '&:hover': {
-            transform: 'translateY(-8px)',
-            boxShadow: '0px 12px 30px rgba(0, 0, 0, 0.35)',
+      <Grid container spacing={4} sx={{ my: 6, justifyContent: 'center' }}>
+        {[
+          {
+            icon: <InsertChartOutlinedIcon fontSize="large" sx={{ color: '#78e0b2' }} />, 
+            title: stats.totalTracks,
+            subtitle: 'Total Tracks',
+            bgColor: 'primary.main',
           },
-        }}
-      >
-        <Avatar
-          sx={{
-            bgcolor: bgColor,
-            mb: 2,
-            width: 64,
-            height: 64,
-            fontSize: '32px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          {icon}
-        </Avatar>
-        <Typography variant="h4" sx={{ fontWeight: 600, mb: 1 }}>
-          {title}
-        </Typography>
-        <Typography variant="body1" color="text.secondary">
-          {subtitle}
-        </Typography>
-      </Card>
-    </Grid>
-  ))}
-</Grid>
+          {
+            icon: <PeopleAltOutlined fontSize="large" sx={{ color: '#ffac33' }} />,
+            title: stats.uniqueAuthors,
+            subtitle: 'Unique Tracks',
+            bgColor: 'highlightMed',
+          },
+          {
+            icon: <PlaylistAddCheckOutlinedIcon fontSize="large" sx={{ color: '#f287ae' }} />,
+            title: stats.recentTrack?.title || 'No recent tracks',
+            subtitle: 'Latest Track',
+            bgColor: 'highlightHigh',
+          },
+        ].map(({ icon, title, subtitle, bgColor }, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
+            <Card
+              sx={{
+                textAlign: 'center',
+                p: 4,
+                borderRadius: '16px',
+                background: `linear-gradient(135deg, ${bgColor}, ${bgColor}90)`,
+                color: 'text.primary',
+                boxShadow: '0px 6px 20px rgba(0, 0, 0, 0.25)',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                '&:hover': {
+                  transform: 'translateY(-8px)',
+                  boxShadow: '0px 12px 30px rgba(0, 0, 0, 0.35)',
+                },
+              }}
+            >
+              <Avatar
+                sx={{
+                  bgcolor: bgColor,
+                  mb: 2,
+                  width: 64,
+                  height: 64,
+                  fontSize: '32px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                {icon}
+              </Avatar>
+              <Typography variant="h4" sx={{ fontWeight: 600, mb: 1 }}>
+                {title}
+              </Typography>
+              <Typography variant="body1" color="text.secondary">
+                {subtitle}
+              </Typography>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+
       {/* Features Section */}
-      <Typography
-        variant="h5"
-        color="primary"
-        gutterBottom
-        sx={{ textAlign: 'center', mb: 4 }}
-      >
+      <Typography variant="h5" color="primary" gutterBottom sx={{ textAlign: 'center', mb: 4 }}>
         Explore Features
       </Typography>
       <Grid container spacing={4}>
@@ -240,9 +220,8 @@ const HomePage = () => {
           >
             Export Data
           </Button>
-          </Grid>
-          
-          <Grid item xs={12} sm={6} md={4}>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
           <Button
             component="a"
             href="https://docs.google.com/document/d/1s2NIMxIjqIe0XhcVG8meiG_llBIKOwTW-gdsZJxbW6E/export?format=pdf"
@@ -257,7 +236,6 @@ const HomePage = () => {
             My Resume
           </Button>
         </Grid>
-        
         <Grid item xs={12} sm={6} md={4}>
           <Button
             component={Link}
@@ -271,7 +249,6 @@ const HomePage = () => {
             QR Codes
           </Button>
         </Grid>
-      
         <Grid item xs={12} sm={6} md={4}>
           <Button
             component="a"
@@ -288,22 +265,21 @@ const HomePage = () => {
           </Button>
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
-  <Button
-    component="a"
-    href="/search"
-    target="_self"
-    rel="noopener noreferrer"
-    variant="contained"
-    size="large"
-    startIcon={<SearchIcon />}
-    fullWidth
-    sx={{ py: 2 }}
-  >
-    Search Tracks
-  </Button>
-</Grid>
-
-          </Grid>
+          <Button
+            component="a"
+            href="/search"
+            target="_self"
+            rel="noopener noreferrer"
+            variant="contained"
+            size="large"
+            startIcon={<SearchIcon />}
+            fullWidth
+            sx={{ py: 2 }}
+          >
+            Search Tracks
+          </Button>
+        </Grid>
+      </Grid>
     </Container>
   );
 };

@@ -18,6 +18,8 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import TrackCard from './TrackCard'; // Updated import
 import axios from 'axios';
 
+const URL = process.env.REACT_APP_API_URL; 
+
 const SearchTrack = () => {
   const [track, setTrack] = useState([]);
   const [filteredTrack, setFilteredTrack] = useState([]);
@@ -31,7 +33,7 @@ const SearchTrack = () => {
 
   useEffect(() => {
     axios
-      .get('https://health-tkr.onrender.com/api/tracks') // Replace with the actual API endpoint
+      .get(`${URL}/api/tracks`) // Replace with the actual API endpoint
       .then((res) => {
         setTrack(res.data);
         setFilteredTrack(res.data);

@@ -16,10 +16,12 @@ import axios from 'axios';
 const QRCodePage = () => {
   const [track, setTrack] = useState([]);
   const [loading, setLoading] = useState(true);
-  const baseUrl = 'https://health-tkr.onrender.com/show-track/';
+  const baseUrl = `${URL}/show-track/`;
+
+  const URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    axios.get('https://health-tkr.onrender.com/api/tracks')
+    axios.get(`${URL}/api/tracks`)
       .then((res) => {
         setTrack(res.data);
         setLoading(false);

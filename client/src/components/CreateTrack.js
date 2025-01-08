@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Container } from '@mui/material';
 import axios from 'axios';
        
-
+const URL = process.env.REACT_APP_API_URL;
 // Set base URL for Axios
 
 const CreateTrack = () => {
@@ -25,7 +25,7 @@ const CreateTrack = () => {
   const onChange = async(e) => {
     setTrack({ ...track, [e.target.name]: e.target.value });
   };
-  axios.defaults.baseURL = "https://health-tkr.onrender.com/api";
+  axios.defaults.baseURL = `${URL}/api`;
 
   const onSubmit = async (e) => {
     e.preventDefault();

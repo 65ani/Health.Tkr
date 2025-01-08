@@ -6,13 +6,15 @@ import { Grid } from '@mui/material';
 
 import TrackCard from './TrackCard';
 
+const URL = process.env.REACT_APP_API_URL; 
+
 function ShowTrackList() {
   const [track, setTrack] = useState([]); 
   const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
     axios
-    .get(`https://health-tkr.onrender.com/api/tracks`)
+    .get(`${URL}/api/tracks`)
     .then((res) => {
       console.log(res.data); // Inspect the response
       setTrack(res.data);
