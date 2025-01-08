@@ -13,12 +13,13 @@ import {
 import DownloadIcon from '@mui/icons-material/Download';
 import axios from 'axios';
 
+const URL = process.env.REACT_APP_API_URL;
+
 const QRCodePage = () => {
   const [track, setTrack] = useState([]);
   const [loading, setLoading] = useState(true);
   const baseUrl = `${URL}/show-track/`;
 
-  const URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     axios.get(`${URL}/api/tracks`)

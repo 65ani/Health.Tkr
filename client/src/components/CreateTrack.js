@@ -46,7 +46,7 @@ const CreateTrack = () => {
       return;
     }
       axios
-      .post('/tracks', track)
+      .post(`${URL}/api/tracks`, track)
       .then((res) => {
         setTrack({
           name: '',
