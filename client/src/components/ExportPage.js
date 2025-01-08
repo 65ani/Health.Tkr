@@ -66,9 +66,9 @@ const ExportPage = () => {
   };
 
   const exportToExcel = () => {
-    const worksheet = XLSX.utils.json_to_sheet(track.map(t => ({ // Changed from tracks to track
+    const worksheet = XLSX.utils.json_to_sheet(track.map(track => ({ // Changed from tracks to track
       name: track.name, 
-      date: formatDate(track.date),// Corrected to use the correct object property
+      date: track.date,// Corrected to use the correct object property
       steps: track.steps,
       caloriesburned: track.caloriesburned,
       distancecovered: track.distancecovered,
@@ -88,7 +88,7 @@ const ExportPage = () => {
   const exportToCSV = () => {
     const worksheet = XLSX.utils.json_to_sheet(track.map(track => ({ 
       name: track.name,
-      date: formatDate(track.date), // Corrected to use the correct object property
+      date: track.date, // Corrected to use the correct object property
       steps: track.steps,
       caloriesburned: track.caloriesburned,
       distancecovered: track.distancecovered,

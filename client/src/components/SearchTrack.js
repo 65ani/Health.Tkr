@@ -24,8 +24,8 @@ const SearchTrack = () => {
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
     searchTerm: '',
-    searchField: 'Track_name', // Matches CreateTrack
-    sortBy: 'Track_name', // Matches CreateTrack
+    searchField: 'name', // Matches CreateTrack
+    sortBy: 'name', // Matches CreateTrack
     sortOrder: 'asc',
   });
 
@@ -74,8 +74,8 @@ const SearchTrack = () => {
   const resetFilters = () => {
     setFilters({
       searchTerm: '',
-      searchField: 'Track_name',
-      sortBy: 'Track_name',
+      searchField: 'name',
+      sortBy: 'name',
       sortOrder: 'asc',
     });
   };
@@ -135,7 +135,7 @@ const SearchTrack = () => {
               '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#E9D8FD' },
             }}
           >
-            <MenuItem value="Track_name">Track Name</MenuItem>
+            <MenuItem value="name">Track Name</MenuItem>
             <MenuItem value="steps">Steps</MenuItem>
             <MenuItem value="caloriesburned">Calories Burned</MenuItem>
             <MenuItem value="distancecovered">Distance Covered</MenuItem>
@@ -158,7 +158,7 @@ const SearchTrack = () => {
               '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#E9D8FD' },
             }}
           >
-            <MenuItem value="Track_name">Track Name</MenuItem>
+            <MenuItem value="name">Name</MenuItem>
             <MenuItem value="steps">Steps</MenuItem>
             <MenuItem value="caloriesburned">Calories Burned</MenuItem>
             <MenuItem value="distancecovered">Distance Covered</MenuItem>

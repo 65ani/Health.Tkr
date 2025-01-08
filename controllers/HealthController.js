@@ -8,8 +8,8 @@ exports.createTrack = async (req, res) => {
             name: req.body.name, // Include the name field
             date: req.body.date,
             steps: req.body.steps,
-            caloriesBurned: req.body.caloriesBurned,
-            distanceCovered: req.body.distanceCovered,
+            caloriesburned: req.body.caloriesburned,
+            distancecovered: req.body.distancecovered,
             weight: req.body.weight,
         });
 
@@ -49,8 +49,8 @@ exports.updateTrack = async (req, res) => {
             name: req.body.name,
             date: req.body.date,
             steps: req.body.steps,
-            caloriesBurned: req.body.caloriesBurned,
-            distanceCovered: req.body.distanceCovered,
+            caloriesburned: req.body.caloriesburned,
+            distancecovered: req.body.distancecovered,
             weight: req.body.weight
         }, { new: true }); // Return the updated Track
 

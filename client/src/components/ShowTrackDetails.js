@@ -42,6 +42,7 @@ const ShowTrackDetails = () => {
         setTrack({ error: 'Error fetching track details' });
       });
   }, [id]);
+  
 
   const onDeleteClick = () => {
     setOpenDialog(true);
@@ -110,7 +111,7 @@ const ShowTrackDetails = () => {
               borderRadius: 5,
             }}
           />
-        </StyledCard>
+        </StyledCard>a
       </Grid>
 
       {/* Track Details Section */}
@@ -123,11 +124,11 @@ const ShowTrackDetails = () => {
             <strong>Steps :</strong> {track.steps}
           </Typography>
           <Typography variant="body1">
-            <strong>Calories Burned (kcal) :</strong> {track.caloriesburned}
-          </Typography>
-          <Typography variant="body1">
-            <strong>Distance Covered (km) :</strong> {track.distancecovered}
-          </Typography>
+  <strong>Calories Burned (kcal) :</strong> {track. caloriesburned}
+</Typography>
+<Typography variant="body1">
+  <strong>Distance Covered (km) :</strong> {track.distancecovered}
+</Typography>
           <Typography variant="body1">
             <strong>Current Weight (kg) :</strong> {track.weight}
           </Typography>
